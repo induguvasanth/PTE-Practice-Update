@@ -1,0 +1,20 @@
+PTE PREMIUM — HIDE/SHOW SOLUTION V4
+
+Same Google Sheet:
+1KeC_OX3jEgbIg57Cn7tL_rtuQeRYXwXmEzVonXBj0cM
+
+Same Apps Script:
+https://script.google.com/macros/s/AKfycbymQpTC6CSFF0o69qd440hN6TdUyXtaIXdKwcrxN3gqmi8_f6jOsBOKIVW5eWfb4P9VNA/exec
+
+Changes:
+- Show Solution is available on every practice page/task.
+- Solution is hidden by default.
+- Answer column is used when present.
+- MCQ correct option(s) are highlighted when answer contains option letters or exact option text.
+- If Answer is blank, the UI falls back to the question/reference so the control never exposes an unintended blank panel.
+- Speaking retains exam-mode hidden reference behavior and also has a separate universal solution reveal.
+- Full Mock has the same hidden/reveal solution control.
+- Existing working Code.gs can be kept unchanged because it already returns the Answer field.
+
+Recommended sheet columns:
+ID | Question | Audio URL | Image URL | Answer | Option A | Option B | Option C | Option D

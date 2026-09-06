@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PTE General — Reading Practice</title>
+<style>
+:root{--bg:#f4f6fb;--surface:#fff;--soft:#f8f9fd;--ink:#152033;--muted:#697386;--line:#e3e7ee;--brand:#5637e8;--brand2:#8138eb;--green:#139a6b;--red:#d94b5b;--gold:#a96e00;--shadow:0 18px 55px rgba(15,23,42,.08)}
+*{box-sizing:border-box}body{margin:0;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 8% 0%,rgba(91,61,245,.09),transparent 30%),radial-gradient(circle at 92% 5%,rgba(139,63,252,.07),transparent 28%),var(--bg)}
+button,input,select{font:inherit}button{cursor:pointer}.hidden{display:none!important}
+.appbar{height:74px;padding:0 28px;background:rgba(255,255,255,.86);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:12px;font-weight:900;font-size:17px}.brandmark{width:44px;height:44px;display:grid;place-items:center;border-radius:14px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;box-shadow:0 10px 24px rgba(91,61,245,.25)}
+.btn{border:1px solid var(--line);background:#fff;color:#344054;border-radius:13px;padding:11px 16px;font-weight:850;font-size:12px;min-height:44px}.btn.primary{color:#fff;border:0;background:linear-gradient(135deg,var(--brand),var(--brand2));box-shadow:0 10px 24px rgba(91,61,245,.18)}.btn.ghost{background:#f8f9fc}.btn:disabled{opacity:.45;cursor:not-allowed}
+.shell{max-width:1800px;margin:auto;padding:22px 28px 30px}
+.tabs{display:flex;align-items:stretch;gap:7px;padding:8px;border:1px solid var(--line);border-radius:22px;background:rgba(255,255,255,.88);box-shadow:0 12px 35px rgba(15,23,42,.06);overflow-x:auto;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}
+.tab{flex:1;min-width:190px;border:0;background:transparent;border-radius:15px;padding:13px 15px;color:#596579;font-size:12px;font-weight:900;white-space:nowrap;transition:.18s}.tab:hover{background:#f5f3ff;color:var(--brand)}.tab.active{background:linear-gradient(135deg,#5637e8,#8138eb);color:#fff;box-shadow:0 9px 22px rgba(91,61,245,.22)}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:18px;margin-top:18px}.card{background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow)}
+.main-card{padding:28px}.side{display:grid;gap:16px;align-content:start}.side-card{padding:20px}
+.exam-head{display:flex;justify-content:space-between;gap:15px;align-items:flex-start}.eyebrow{font-size:11px;font-weight:950;letter-spacing:.14em;text-transform:uppercase;color:#6f65c8}.exam-head h1{font-size:29px;line-height:1.1;margin:6px 0}.exam-head p{margin:0;color:var(--muted);font-size:13px}.status{display:flex;align-items:center;gap:7px;padding:10px 14px;background:#f7f8fa;border-radius:999px;color:#667085;font-size:11px;font-weight:900}.dot{width:8px;height:8px;border-radius:50%;background:#98a2b3}
+.task-strip{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.pill{font-size:10px;font-weight:850;padding:7px 10px;border:1px solid var(--line);border-radius:999px;background:#fafbfc;color:#596579}
+.qcount{font-size:11px;color:#697386;font-weight:900;margin:10px 0}
+.instruction{padding:13px 15px;border:1px solid #f0d99d;background:#fffaf0;border-radius:14px;color:#715a22;font-size:12px;line-height:1.55;margin:12px 0}
+.prompt{border:1px solid var(--line);background:#fbfcfe;border-radius:20px;padding:24px;font-size:17px;line-height:1.75;min-height:260px}.passage{white-space:pre-wrap}.prompt.compact{min-height:auto}
+.controls{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}.controls .btn{min-width:118px}
+.score-title{margin:0 0 5px;font-size:16px}.sub{font-size:12px;color:var(--muted);line-height:1.5}.score-panel{margin-top:14px;padding:18px;border-radius:20px;background:linear-gradient(135deg,#f8f7ff,#eeecff);border:1px solid #ddd8ff}.score-label{font-size:11px;color:#697386}.score-big{font-size:36px;font-weight:950;color:#4934bd;margin-top:4px;letter-spacing:-.04em}.score-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.metrics{display:grid;gap:10px;margin-top:14px}.metric .row{display:flex;justify-content:space-between;font-size:11px;font-weight:850}.bar{height:7px;border-radius:99px;background:#e9ecf1;overflow:hidden;margin-top:5px}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--brand),var(--brand2));border-radius:99px}
+.timer{font-size:40px;font-weight:950;color:#4732bd;letter-spacing:-.06em}.timer-state{font-size:12px;color:#697386;margin:7px 0 15px}.tips{margin:0;padding-left:18px;color:#667085}.tips li{font-size:12px;line-height:1.65;margin:5px 0}
+.choice-grid{display:grid;gap:10px;margin-top:14px}.choice{width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:14px;padding:14px 16px;color:#344054;font-size:13px;font-weight:750;transition:.15s}.choice:hover{border-color:#b7aefa;background:#faf9ff}.choice.selected{border-color:#806df0;background:#f3f1ff;color:#4c36c5;box-shadow:0 0 0 3px rgba(91,61,245,.07)}.choice.correct{border-color:#76c9a9;background:#effbf6}.choice.wrong{border-color:#efa5ac;background:#fff4f4}
+.blank-select{appearance:auto;border:1px solid #a79af8;border-radius:9px;padding:5px 8px;color:#4230b0;background:#fff;font-weight:800;min-width:115px;margin:0 3px}
+.word-bank{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px;padding:14px;border:1px dashed #c9c3f7;border-radius:16px;background:#faf9ff}.word{border:1px solid #d9d4ff;background:#fff;border-radius:999px;padding:9px 13px;font-size:12px;font-weight:850;color:#4934bd}.word.used{opacity:.4;pointer-events:none}.word.active{box-shadow:0 0 0 3px rgba(91,61,245,.12);border-color:#765ff0}
+.blank-slot{display:inline-flex;align-items:center;justify-content:center;min-width:115px;border-bottom:2px solid #7e6ff0;padding:2px 7px;margin:0 2px;color:#4c36c5;font-weight:850;cursor:pointer;background:#f7f6ff;border-radius:7px 7px 0 0}.blank-slot.active{outline:3px solid rgba(91,61,245,.12)}
+.reorder-list{display:grid;gap:10px;margin-top:14px}.reorder-item{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:start;padding:14px;border:1px solid var(--line);border-radius:15px;background:#fff}.reorder-num{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;background:#f0edff;color:#513acb;font-size:11px;font-weight:950}.reorder-text{font-size:13px;line-height:1.6}.move{display:flex;gap:5px}.move button{width:30px;height:30px;border:1px solid var(--line);background:#fafbfc;border-radius:9px;font-weight:900}
+.solution-wrap{margin-top:14px}.solution-panel{margin-top:9px;padding:16px;border:1px solid #d8d2ff;background:#faf9ff;border-radius:15px}.solution-title{font-size:11px;font-weight:950;color:#5140b5;margin-bottom:7px}.solution-text{font-size:12px;line-height:1.65;white-space:pre-wrap}.template-panel{margin-top:9px;padding:10px;border:1px solid var(--line);border-radius:15px;background:#fbfcfe}.template-panel img{width:100%;max-height:390px;object-fit:contain;border-radius:10px}
+.result-note{font-size:11px;color:#697386;margin-top:12px;line-height:1.55}
+.loading{padding:40px;text-align:center;color:#667085}
+@media(max-width:1100px){.layout{grid-template-columns:1fr}.side{grid-template-columns:1fr 1fr}.tabs .tab{min-width:210px}}
+@media(max-width:720px){.appbar{height:62px;padding:0 14px}.shell{padding:12px 10px 24px}.brand{font-size:14px}.brandmark{width:38px;height:38px}.tabs{border-radius:17px}.tab{min-width:175px;padding:11px 12px}.layout{margin-top:12px}.main-card,.side-card{padding:16px;border-radius:19px}.exam-head h1{font-size:23px}.prompt{padding:17px;font-size:15px;min-height:230px}.side{grid-template-columns:1fr}.controls .btn{flex:1;min-width:0}.timer{font-size:34px}}
+</style>
+</head>
+<body>
+<header class="appbar">
+  <div class="brand"><div class="brandmark">P</div><span>Reading</span></div>
+  <a class="btn ghost" href="index.html" style="text-decoration:none">Dashboard</a>
+</header>
+<main class="shell">
+  <nav class="tabs" aria-label="Reading tasks">
+    <button class="tab" data-key="readingRWBlanks">🧩 R&W Fill in the Blanks</button>
+    <button class="tab" data-key="readingMCQMultiple">☑️ Multiple Choice, Multiple Answers</button>
+    <button class="tab" data-key="reorderParagraph">🔀 Re-order Paragraph</button>
+    <button class="tab" data-key="readingBlanks">🧩 Fill in the Blanks</button>
+    <button class="tab" data-key="readingMCQSingle">🔘 Multiple Choice, Single Answer</button>
+  </nav>
+
+  <div id="loading" class="card loading" style="margin-top:18px">Loading Reading practice…</div>
+
+  <div id="app" class="layout hidden">
+    <section class="card main-card">
+      <div class="exam-head">
+        <div>
+          <div id="eyebrow" class="eyebrow">READING</div>
+          <h1 id="title">Reading</h1>
+          <p id="subtitle"></p>
+        </div>
+        <div class="status"><span class="dot"></span> <span id="statusText">Ready</span></div>
+      </div>
+
+      <div id="meta" class="task-strip"></div>
+      <div id="qcount" class="qcount"></div>
+      <div id="instruction" class="instruction"></div>
+      <div id="content"></div>
+
+      <div class="controls">
+        <button id="prevBtn" class="btn">← Previous</button>
+        <button id="nextBtn" class="btn">Next →</button>
+        <button id="resetBtn" class="btn">Reset</button>
+        <button id="finishBtn" class="btn primary">Finish & Score</button>
+      </div>
+
+      <div id="solutionWrap" class="solution-wrap"></div>
+    </section>
+
+    <aside class="side">
+      <section class="card side-card">
+        <h3 class="score-title">Practice result</h3>
+        <div class="sub">Feedback appears after you finish the task.</div>
+        <div class="score-panel">
+          <div class="score-row">
+            <div><div class="score-label">Practice score</div><div id="score" class="score-big">—</div></div>
+            <button id="scoreSideBtn" class="btn primary">Score Task</button>
+          </div>
+          <div class="metrics">
+            <div class="metric"><div class="row"><span>Accuracy</span><span id="accuracyValue">—</span></div><div class="bar"><i id="accuracyBar"></i></div></div>
+            <div class="metric"><div class="row"><span>Completion</span><span id="completionValue">—</span></div><div class="bar"><i id="completionBar"></i></div></div>
+          </div>
+        </div>
+        <div class="result-note">Practice estimate for learning and improvement. It is not an official Pearson score.</div>
+      </section>
+
+      <section class="card side-card">
+        <h3 class="score-title">Exam controls</h3>
+        <div id="timer" class="timer">00:00</div>
+        <div id="timerState" class="timer-state">Ready</div>
+        <div class="controls" style="margin-top:0">
+          <button id="startBtn" class="btn primary">Start</button>
+          <button id="stopBtn" class="btn">Stop</button>
+        </div>
+      </section>
+
+      <section class="card side-card">
+        <h3 class="score-title">Tips & tricks</h3>
+        <ul id="tips" class="tips"></ul>
+      </section>
+    </aside>
+  </div>
+</main>
+
+<script>
+const API_URL='https://script.google.com/macros/s/AKfycby93OqAVZly8hOur-nq1mxZ2rKWS1Aif4sSrlbz8Y2Ot4b8Y_RFbvWqSn-_D--GsDZ-/exec';
+
+const META={
+  readingRWBlanks:{
+    icon:'🧩',label:'Reading & Writing: Fill in the Blanks',
+    skills:'READING + WRITING',meta:'Approx. 5–6 questions • contributes to Reading + Writing',
+    instruction:'Read the passage and choose the best word for each blank. Use grammar, collocation and meaning together.',
+    tips:['Read the whole sentence before choosing a word.','Check grammar and common collocations.','Do not choose a word only because it sounds familiar.']
+  },
+  readingMCQMultiple:{
+    icon:'☑️',label:'Multiple Choice, Multiple Answers',
+    skills:'READING',meta:'Approx. 2–3 questions • select all correct answers',
+    instruction:'Read the passage carefully. More than one option may be correct. Select only answers supported by the text.',
+    tips:['Look for evidence in the passage.','Do not select an option just because it contains similar words.','Check every selected option before finishing.']
+  },
+  reorderParagraph:{
+    icon:'🔀',label:'Re-order Paragraph',
+    skills:'READING',meta:'Approx. 2–3 questions • arrange into a logical order',
+    instruction:'Arrange the text boxes in the most logical order. Look for the opening topic, pronouns, repeated nouns and linking words.',
+    tips:['Find the paragraph that introduces the topic.','Use pronouns and reference words to connect ideas.','Look for chronological or cause-and-effect links.']
+  },
+  readingBlanks:{
+    icon:'🧩',label:'Fill in the Blanks',
+    skills:'READING',meta:'Approx. 4–5 questions • choose from a word bank',
+    instruction:'Choose words from the word bank and place them in the correct blanks. Each word can be used once.',
+    tips:['Read around each blank before choosing.','Use collocation and part of speech.','Leave difficult blanks and return to them.']
+  },
+  readingMCQSingle:{
+    icon:'🔘',label:'Multiple Choice, Single Answer',
+    skills:'READING',meta:'Approx. 2–3 questions • choose one best answer',
+    instruction:'Read the passage and select the single best answer based on the information provided.',
+    tips:['Read the question before checking options.','Choose the best-supported answer, not merely a possible one.','Eliminate options that are too broad or too extreme.']
+  }
+};
+
+let DATA={},task='readingRWBlanks',idx=0,selected=[],blankAnswers=[],activeBlank=-1,order=[],startedAt=null,timerHandle=null;
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const normalize=s=>String(s??'').trim().toLowerCase();
+
+function jsonp(action){
+  return new Promise((resolve,reject)=>{
+    const cb='pte_'+Date.now()+'_'+Math.random().toString(36).slice(2);
+    const script=document.createElement('script');
+    const tm=setTimeout(()=>{script.remove();delete window[cb];reject(new Error('Backend timeout. Check the Apps Script URL and deployment.'))},16000);
+    window[cb]=data=>{clearTimeout(tm);delete window[cb];script.remove();resolve(data)};
+    script.src=API_URL+'?action='+encodeURIComponent(action)+'&callback='+cb+'&t='+Date.now();
+    document.body.appendChild(script);
+  });
+}
+
+async function init(){
+  try{
+    const d=await jsonp('reading');
+    DATA=d.section||{};
+    $('loading').classList.add('hidden');$('app').classList.remove('hidden');
+    selectTask(task);
+  }catch(err){$('loading').textContent='Backend connection failed: '+err.message;}
+}
+
+function selectTask(key){
+  task=key;idx=0;clearAttempt();
+  document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.key===key));
+  const m=META[key];
+  $('eyebrow').textContent=m.skills;$('title').textContent=m.icon+' '+m.label;$('subtitle').textContent=m.meta;
+  $('instruction').textContent='💡 '+m.instruction;
+  $('tips').innerHTML=m.tips.map(x=>'<li>'+esc(x)+'</li>').join('');
+  resetResult();render();
+}
+
+function questions(){return (DATA[task]&&DATA[task].questions)||[]}
+function current(){return questions()[idx]||null}
+
+function clearAttempt(){selected=[];blankAnswers=[];activeBlank=-1;order=[];}
+function resetResult(){
+  $('score').textContent='—';$('accuracyValue').textContent='—';$('completionValue').textContent='—';
+  $('accuracyBar').style.width='0';$('completionBar').style.width='0';
+}
+
+function render(){
+  const arr=questions(),q=current();
+  $('qcount').textContent=q?'QUESTION '+(idx+1)+' OF '+arr.length:'';
+  $('prevBtn').disabled=idx<=0;$('nextBtn').disabled=idx>=arr.length-1;
+  $('solutionWrap').innerHTML='';
+  if(!q){
+    $('content').innerHTML='<div class="prompt compact"><strong>No questions found for this task.</strong><br><span class="sub">Check the matching Google Sheet tab name and sample data.</span></div>';
+    return;
+  }
+  if(task==='readingRWBlanks') renderDropdown(q);
+  else if(task==='readingMCQMultiple') renderChoices(q,true);
+  else if(task==='reorderParagraph') renderReorder(q);
+  else if(task==='readingBlanks') renderWordBank(q);
+  else renderChoices(q,false);
+}
+
+function questionText(q){return String(q.text||q.question||q.prompt||'').trim()}
+function optionList(q){
+  if(Array.isArray(q.options)&&q.options.length)return q.options;
+  return [];
+}
+function splitAnswer(ans){return String(ans||'').split(/\s*(?:\|\|\||\||;|,)\s*/).map(x=>x.trim()).filter(Boolean)}
+
+function makeBlankPassage(text,renderer){
+  let n=0;
+  return esc(text).replace(/(\[\[blank(?:\d+)?\]\]|\{\{blank(?:\d+)?\}\}|_{3,})/gi,()=>{
+    const i=n++; return renderer(i);
+  });
+}
+
+function renderDropdown(q){
+  const opts=optionList(q);
+  const raw=questionText(q);
+  const count=(raw.match(/(\[\[blank(?:\d+)?\]\]|\{\{blank(?:\d+)?\}\}|_{3,})/gi)||[]).length;
+  if(blankAnswers.length!==count) blankAnswers=Array(count).fill('');
+  const passage=makeBlankPassage(raw,i=>{
+    const options=['<option value="">Select</option>'].concat(opts.map(o=>'<option value="'+esc(o)+'" '+(blankAnswers[i]===o?'selected':'')+'>'+esc(o)+'</option>')).join('');
+    return '<select class="blank-select" data-blank="'+i+'">'+options+'</select>';
+  });
+  $('content').innerHTML='<div class="prompt"><div class="passage">'+passage+'</div></div>';
+  document.querySelectorAll('.blank-select').forEach(s=>s.onchange=()=>{blankAnswers[Number(s.dataset.blank)]=s.value;});
+}
+
+function renderChoices(q,multiple){
+  const prompt=questionText(q),opts=optionList(q);
+  let html='<div class="prompt compact"><div class="passage">'+esc(prompt)+'</div></div>';
+  html+='<div class="choice-grid">'+opts.map((o,i)=>'<button class="choice '+(selected.includes(i)?'selected':'')+'" data-choice="'+i+'"><strong>'+(multiple?'☑':'◉')+'</strong> '+esc(o)+'</button>').join('')+'</div>';
+  $('content').innerHTML=html;
+  document.querySelectorAll('[data-choice]').forEach(b=>b.onclick=()=>{
+    const n=Number(b.dataset.choice);
+    selected=multiple?(selected.includes(n)?selected.filter(x=>x!==n):[...selected,n]):[n];
+    renderChoices(q,multiple);
+  });
+}
+
+function reorderParts(q){
+  const text=questionText(q);
+  if(text.includes('|||'))return text.split('|||').map(x=>x.trim()).filter(Boolean);
+  const opts=optionList(q);return opts.length?opts:[text];
+}
+function renderReorder(q){
+  const parts=reorderParts(q);
+  if(!order.length||order.length!==parts.length)order=parts.map((_,i)=>i);
+  const html='<div class="prompt compact"><div class="sub">Arrange the paragraphs from first to last.</div><div class="reorder-list">'+order.map((orig,pos)=>'<div class="reorder-item"><div class="reorder-num">'+(pos+1)+'</div><div class="reorder-text">'+esc(parts[orig])+'</div><div class="move"><button data-up="'+pos+'" '+(pos===0?'disabled':'')+'>↑</button><button data-down="'+pos+'" '+(pos===order.length-1?'disabled':'')+'>↓</button></div></div>').join('')+'</div></div>';
+  $('content').innerHTML=html;
+  document.querySelectorAll('[data-up]').forEach(b=>b.onclick=()=>{const p=Number(b.dataset.up);[order[p-1],order[p]]=[order[p],order[p-1]];renderReorder(q)});
+  document.querySelectorAll('[data-down]').forEach(b=>b.onclick=()=>{const p=Number(b.dataset.down);[order[p+1],order[p]]=[order[p],order[p+1]];renderReorder(q)});
+}
+
+function renderWordBank(q){
+  const opts=optionList(q),raw=questionText(q);
+  const count=(raw.match(/(\[\[blank(?:\d+)?\]\]|\{\{blank(?:\d+)?\}\}|_{3,})/gi)||[]).length;
+  if(blankAnswers.length!==count)blankAnswers=Array(count).fill('');
+  const passage=makeBlankPassage(raw,i=>'<span class="blank-slot '+(activeBlank===i?'active':'')+'" data-slot="'+i+'">'+esc(blankAnswers[i]||'Choose word')+'</span>');
+  const used=blankAnswers.filter(Boolean);
+  let html='<div class="prompt"><div class="passage">'+passage+'</div></div><div class="word-bank">'+opts.map((o,i)=>'<button class="word '+(used.includes(o)?'used':'')+' '+(activeBlank===-1?'':'')+'" data-word="'+i+'">'+esc(o)+'</button>').join('')+'</div>';
+  $('content').innerHTML=html;
+  document.querySelectorAll('[data-slot]').forEach(b=>b.onclick=()=>{activeBlank=Number(b.dataset.slot);renderWordBank(q)});
+  document.querySelectorAll('[data-word]').forEach(b=>b.onclick=()=>{
+    if(activeBlank<0){alert('Select a blank first.');return;}
+    const word=opts[Number(b.dataset.word)];
+    blankAnswers[activeBlank]=word;activeBlank=-1;renderWordBank(q);
+  });
+}
+
+function answerKey(q){return splitAnswer(q.answer)}
+function evaluate(){
+  const q=current();if(!q)return;
+  let accuracy=0,completion=0,response='';
+  if(task==='readingRWBlanks'||task==='readingBlanks'){
+    const key=answerKey(q); const total=Math.max(key.length,blankAnswers.length,1);
+    completion=Math.round(blankAnswers.filter(Boolean).length/total*100);
+    let right=0;for(let i=0;i<Math.min(key.length,blankAnswers.length);i++)if(normalize(key[i])===normalize(blankAnswers[i]))right++;
+    accuracy=Math.round(right/total*100);response=blankAnswers.join(' | ');
+  }else if(task==='reorderParagraph'){
+    const key=answerKey(q);const expected=key.map(x=>Number(x)-1);
+    const total=Math.max(expected.length,order.length,1);let right=0;
+    for(let i=0;i<Math.min(expected.length,order.length);i++)if(expected[i]===order[i])right++;
+    completion=100;accuracy=Math.round(right/total*100);response=order.map(x=>x+1).join(' | ');
+  }else{
+    const opts=optionList(q),key=answerKey(q);
+    completion=selected.length?100:0;
+    const chosen=selected.map(i=>normalize(opts[i]));
+    const expected=key.map(normalize);
+    if(expected.length){
+      const right=chosen.filter(x=>expected.includes(x)).length;
+      const wrong=chosen.filter(x=>!expected.includes(x)).length;
+      accuracy=Math.max(0,Math.round((right/expected.length*100)-(wrong*20)));
+      if(chosen.length===expected.length&&right===expected.length)accuracy=100;
+    }else accuracy=selected.length?60:0;
+    response=selected.map(i=>opts[i]).join(' | ');
+  }
+  const score=Math.round((accuracy*.8+completion*.2)*.9);
+  $('score').textContent=score+'/90 · '+Math.round(score/90*100)+'%';
+  $('accuracyValue').textContent=accuracy+'%';$('completionValue').textContent=completion+'%';
+  $('accuracyBar').style.width=accuracy+'%';$('completionBar').style.width=completion+'%';
+  $('statusText').textContent='Finished';
+  showSolution(q);
+  save(q,response,score);
+}
+
+function showSolution(q){
+  let html='<button id="showSolution" class="btn">💡 Show Solution</button><div id="solutionPanel" class="solution-panel hidden"><div class="solution-title">Solution / Answer</div><div class="solution-text">'+esc(q.answer||'No solution has been added yet.')+'</div></div>';
+  if(q.templateImageUrl)html+='<button id="showTemplate" class="btn" style="margin-top:9px">🖼️ Show Template Image</button><div id="templatePanel" class="template-panel hidden"><img src="'+esc(q.templateImageUrl)+'" alt="Practice template"></div>';
+  $('solutionWrap').innerHTML=html;
+  $('showSolution').onclick=()=>{const p=$('solutionPanel');p.classList.toggle('hidden');$('showSolution').textContent=p.classList.contains('hidden')?'💡 Show Solution':'🙈 Hide Solution'};
+  if($('showTemplate'))$('showTemplate').onclick=()=>{const p=$('templatePanel');p.classList.toggle('hidden');$('showTemplate').textContent=p.classList.contains('hidden')?'🖼️ Show Template Image':'🙈 Hide Template Image'};
+}
+
+function save(q,response,score){
+  fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({task:task,questionId:q.id,expectedText:q.answer||q.text||'',response:response,pteScore:score}),mode:'no-cors'}).catch(()=>{});
+}
+
+function resetCurrent(){clearAttempt();resetResult();$('statusText').textContent='Ready';render();}
+function move(delta){const arr=questions();const n=idx+delta;if(n>=0&&n<arr.length){idx=n;clearAttempt();resetResult();render();}}
+function startTimer(){
+  if(startedAt)return;
+  startedAt=Date.now();$('timerState').textContent='In progress';$('statusText').textContent='In progress';
+  timerHandle=setInterval(()=>{const s=Math.floor((Date.now()-startedAt)/1000);$('timer').textContent=String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')},250);
+}
+function stopTimer(){if(timerHandle)clearInterval(timerHandle);timerHandle=null;startedAt=null;$('timerState').textContent='Stopped';$('statusText').textContent='Ready';}
+$('prevBtn').onclick=()=>move(-1);$('nextBtn').onclick=()=>move(1);$('resetBtn').onclick=resetCurrent;
+$('finishBtn').onclick=evaluate;$('scoreSideBtn').onclick=evaluate;$('startBtn').onclick=startTimer;$('stopBtn').onclick=stopTimer;
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>selectTask(b.dataset.key));
+init();
+</script>
+</body>
+</html>

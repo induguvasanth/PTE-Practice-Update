@@ -224,8 +224,45 @@ function render(){
     else body+=`<div class="notice">⚠️ Audio URL is missing for this question. Add a public audio URL in the sheet.</div>`;
     body+=`<div class="hintline">💡 Focus on: topic → speaker viewpoints → agreements/disagreements → short conclusion.</div>`;
   } else if(task==='respondSituation'){
-    body+=`<div class="prompt">${esc(text||'Situation prompt not found.')}</div>`;
-    body+=`<div class="hintline">💡 Give a natural spoken response. Address the person or situation directly and include the requested action.</div>`;
+
+  body += `
+    <div class="notice">
+      🎧 <b>Exam-style practice:</b>
+      Listen carefully to the situation before answering.
+    </div>
+  `;
+
+  // AUDIO-FIRST MODE
+  if(q.audioUrl){
+
+    body += `
+      <div class="media">
+        <audio
+          controls
+          preload="metadata"
+          src="${esc(q.audioUrl)}">
+          Your browser does not support audio playback.
+        </audio>
+      </div>
+    `;
+
+  } else {
+
+    // TEXT FALLBACK ONLY WHEN AUDIO IS NOT AVAILABLE
+    body += `
+      <div class="prompt">
+        ${esc(text || 'Situation prompt not found.')}
+      </div>
+    `;
+  }
+
+  body += `
+    <div class="hintline">
+      💡 Listen carefully, understand the situation,
+      and give a natural and appropriate spoken response.
+    </div>
+  `;
+}
   } else if(task==='summarizeWrittenText'){
     body+=`<div class="notice">📝 Read the passage and write <b>one sentence</b> summarizing the main idea and key supporting information.</div>`;
     body+=`<div class="prompt" style="font-size:15px;align-items:flex-start">${esc(text||'Passage not found.')}</div>`;

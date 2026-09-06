@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>PTE Practice Studio — Speaking & Writing</title>
+<style>
+:root{--bg:#f3f5fb;--card:#fff;--ink:#10203d;--muted:#63738c;--line:#e2e7f0;--p:#5b3df0;--p2:#8034e8;--soft:#f0edff;--good:#087f5b;--bad:#c53c52;--warn:#9a5b00;--dark:#111a2b}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,Segoe UI,Arial,sans-serif}button,input,textarea{font:inherit}button{cursor:pointer}a{text-decoration:none;color:inherit}
+.header{height:64px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 22px;position:sticky;top:0;z-index:20}.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:19px}.logo{width:40px;height:40px;border-radius:13px;background:linear-gradient(135deg,var(--p),var(--p2));display:grid;place-items:center;color:#fff}.headRight{display:flex;gap:8px;align-items:center}.pill{border:1px solid var(--line);border-radius:20px;background:#fff;padding:8px 12px;font-size:11px;font-weight:800}.back{border:1px solid var(--line);border-radius:10px;background:#fff;padding:8px 11px;font-weight:800;font-size:11px}
+.page{max-width:1500px;margin:auto;padding:14px 18px}.hero{background:linear-gradient(120deg,#342b82,#7429dd);color:#fff;border-radius:22px;padding:20px 24px}.heroRow{display:flex;justify-content:space-between;gap:15px;align-items:flex-end}.hero h1{margin:0 0 5px;font-size:28px}.hero p{margin:0;max-width:900px;font-size:12px;line-height:1.55;opacity:.92}.stats{display:flex;gap:7px;flex-wrap:wrap}.stat{background:#ffffff18;border:1px solid #ffffff25;border-radius:11px;padding:8px 10px;min-width:105px}.stat b{display:block;font-size:15px}.stat small{font-size:8px;opacity:.85}
+.notice{margin:10px 0;background:#fff9e9;border:1px solid #efd59b;color:#73511c;border-radius:12px;padding:9px 12px;font-size:10px;line-height:1.5}.tabs{display:flex;gap:5px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:5px;margin:12px 0;overflow-x:auto;scrollbar-width:thin}.tab{flex:0 0 auto;border:0;background:transparent;color:#5c6e87;border-radius:11px;padding:9px 12px;font-size:10px;font-weight:900;white-space:nowrap}.tab.active{background:linear-gradient(135deg,var(--p),var(--p2));color:#fff}.tab small{display:block;font-size:7px;margin-top:2px;opacity:.75}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:12px}.card{background:var(--card);border:1px solid var(--line);border-radius:19px;box-shadow:0 7px 25px #1828450b}.practice,.side{padding:17px;min-width:0}.qtop{display:flex;justify-content:space-between;gap:12px}.kicker{font-size:10px;letter-spacing:.09em;color:var(--p);font-weight:950}.chips{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}.chip{background:var(--soft);color:#4d39c9;border-radius:15px;padding:6px 8px;font-size:8px;font-weight:850}.instruction{font-size:11px;color:var(--muted);line-height:1.5}.prompt{background:#f8fafc;border:1px solid var(--line);border-radius:15px;padding:20px;font-size:21px;line-height:1.55;font-weight:650;min-height:220px;display:flex;align-items:center;white-space:pre-wrap}.media{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:10px;margin:10px 0}.media img{width:100%;max-height:340px;object-fit:contain;border-radius:10px}.media audio{width:100%;height:40px}.media .err{font-size:10px;color:var(--bad);padding:8px}
+.timer{text-align:center;margin:11px 0}.timer b{display:block;color:var(--p);font-size:42px;line-height:1}.timer small{font-size:8px;font-weight:900;color:var(--muted);letter-spacing:.08em}.controls{display:grid;grid-template-columns:1.3fr .8fr .8fr .8fr;gap:7px}.btn{border:0;border-radius:10px;padding:10px;min-height:40px;font-size:10px;font-weight:900}.primary{background:linear-gradient(135deg,var(--p),var(--p2));color:#fff}.soft{background:#edf1f7;color:#33445c}.danger{background:#f09a9f;color:#fff}.btn:disabled{opacity:.5;cursor:not-allowed}.hintline{margin-top:9px;border:1px dashed #cbd5e4;border-radius:10px;padding:9px 10px;font-size:10px;color:#50627d}.transcript{margin-top:10px;background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:12px;min-height:88px;font-size:12px;line-height:1.55;white-space:pre-wrap}.transcript.empty{color:#9aa7b8}.live{font-size:8px;font-weight:950;color:var(--muted);letter-spacing:.06em;margin-bottom:5px}.live.on{color:#d3264d}
+.side h2{font-size:19px;margin:0 0 13px}.scoreBox{background:linear-gradient(145deg,#efedff,#f8f6ff);border-radius:15px;text-align:center;padding:14px}.score{font-size:37px;font-weight:950;color:var(--p)}.scoreBox small{font-size:8px;color:var(--muted)}.metric{margin-top:11px}.metricHead{display:flex;justify-content:space-between;font-size:10px;font-weight:900}.bar{height:7px;background:#e2e5ea;border-radius:9px;overflow:hidden;margin-top:5px}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--p),var(--p2));transition:.25s}.sideCard{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:11px}.sideCard h3{margin:0 0 7px;font-size:11px}.sideCard p,.sideCard li{font-size:9px;line-height:1.5;color:#52657f}.sideCard ul{margin:5px 0 0;padding-left:17px}.diag{white-space:pre-wrap}.status{font-size:10px;color:var(--muted);margin-top:7px}.status.ok{color:var(--good);font-weight:800}.status.err{color:var(--bad);font-weight:800}
+.writeBox{width:100%;min-height:230px;resize:vertical;border:1px solid var(--line);border-radius:15px;padding:15px;outline:none;background:#f8fafc;color:var(--ink);line-height:1.6}.writeBox:focus{border-color:#8a77ef;box-shadow:0 0 0 3px #6b4df014}.count{font-size:9px;color:var(--muted);text-align:right;margin-top:5px}.empty{padding:45px 20px;text-align:center}.empty h2{margin:8px 0}.loading{text-align:center;padding:55px;font-weight:800;color:var(--muted)}
+.modal{position:fixed;inset:0;background:#071021aa;display:none;align-items:center;justify-content:center;padding:18px;z-index:100}.modal.show{display:flex}.modalBox{background:#fff;max-width:560px;width:100%;border-radius:20px;padding:22px;box-shadow:0 25px 70px #0005}.modalBox h2{margin:0 0 7px;font-size:20px}.modalBox p{font-size:11px;line-height:1.55;color:var(--muted)}.permissionState{background:#f7f9fc;border-radius:13px;padding:12px;font-family:ui-monospace,monospace;font-size:9px;white-space:pre-wrap}.modalBtns{display:flex;gap:8px;margin-top:12px}.modalBtns .btn{flex:1}
+@media(max-width:900px){.grid{grid-template-columns:1fr}.heroRow{align-items:flex-start;flex-direction:column}.side{padding-top:0}.hero h1{font-size:23px}.prompt{font-size:18px;min-height:180px}.controls{grid-template-columns:1fr 1fr}.controls .primary{grid-column:span 2}.header{padding:0 12px}.page{padding:10px}.stats{width:100%}.stat{flex:1}}
+@media(max-width:520px){.header{height:56px}.brand{font-size:15px}.logo{width:34px;height:34px}.back{display:none}.hero{border-radius:16px;padding:15px}.hero p{font-size:10px}.tab{padding:9px 10px}.practice,.side{padding:13px}.prompt{font-size:17px;padding:15px;min-height:165px}.timer b{font-size:36px}.score{font-size:32px}.qtop{flex-direction:column}.chips{justify-content:flex-start}}
+</style>
+</head>
+<body>
+<header class="header"><div class="brand"><div class="logo">P</div><div>PTE Practice Studio</div></div><div class="headRight"><span id="micPill" class="pill">🎙️ Mic checking…</span><a class="back" href="index.html">← Dashboard</a></div></header>
+<main class="page">
+<section class="hero"><div class="heroRow"><div><h1>Speaking & Writing Practice</h1><p>Practice every current PTE Academic Speaking & Writing task in one fast, mobile-friendly page. Use the live transcript as a practice aid—not an official Pearson score.</p></div><div class="stats"><div class="stat"><b>10</b><small>practice tabs</small></div><div class="stat"><b id="qCount">—</b><small>questions loaded</small></div><div class="stat"><b>76–84 min</b><small>section time*</small></div></div></div></section>
+<div class="notice">ℹ️ <b>Microphone:</b> this page requests microphone access only after you click <b>Test Microphone</b> or <b>Start Practice</b>. For live text, use the latest Chrome/Edge and open this page directly on GitHub Pages over HTTPS.</div>
+<nav id="tabs" class="tabs"></nav>
+<div id="loading" class="card loading">Loading Speaking & Writing questions…</div>
+<div id="grid" class="grid" style="display:none"><section class="card practice" id="main"></section><aside class="card side"><h2>Your Score</h2><div class="scoreBox"><div id="score" class="score">—</div><small>PTE-style practice estimate / 90</small></div><div class="metric"><div class="metricHead"><span>Content</span><span id="contentV">—</span></div><div class="bar"><i id="contentB"></i></div></div><div class="metric"><div class="metricHead"><span>Fluency</span><span id="fluencyV">—</span></div><div class="bar"><i id="fluencyB"></i></div></div><div class="metric"><div class="metricHead"><span>Pronunciation</span><span id="pronV">—</span></div><div class="bar"><i id="pronB"></i></div></div><div class="sideCard"><h3>🎙️ Microphone</h3><div id="micStatus" class="status">Not tested yet.</div><button id="micTest" class="btn primary" style="width:100%;margin-top:8px">🎙️ Test Microphone</button><button id="speechTest" class="btn soft" style="width:100%;margin-top:7px">🗣️ Test Speech Recognition</button></div><div class="sideCard"><h3>🔎 Connection Diagnostics</h3><p id="diag" class="diag">Checking…</p></div><div class="sideCard"><h3>💡 Tips & Tricks</h3><ul id="tips"></ul></div><div class="sideCard"><h3>🎯 Quick Hint</h3><p id="hint">Focus on the task requirements.</p></div></aside></div>
+</main>
+<div id="permissionModal" class="modal"><div class="modalBox"><h2>🎙️ Microphone permission needed</h2><p>The browser needs microphone access for speech practice. Click <b>Allow Microphone</b>, then choose <b>Allow</b> if Chrome/Edge asks.</p><div id="permDetails" class="permissionState"></div><div class="modalBtns"><button id="allowMic" class="btn primary">🎙️ Allow Microphone</button><button id="closeModal" class="btn soft">Close</button></div></div></div>
+<script>
+const API_URL='https://script.google.com/macros/s/AKfycby93OqAVZly8hOur-nq1mxZ2rKWS1Aif4sSrlbz8Y2Ot4b8Y_RFbvWqSn-_D--GsDZ-/exec';
+const META={
+ personalIntroduction:{name:'Personal Introduction',icon:'👤',count:'1 practice task',time:'Unscored • about 30s',weight:'Unscored',type:'speech'},
+ readAloud:{name:'Read Aloud',icon:'📖',count:'6–7 questions',time:'30–40s prep • response varies',weight:'~4% overall • ~9% Speaking',type:'speech'},
+ repeatSentence:{name:'Repeat Sentence',icon:'🎧',count:'10–12 questions',time:'Listen • repeat immediately',weight:'~7% overall • ~16% Speaking',type:'speechAudio'},
+ describeImage:{name:'Describe Image',icon:'🖼️',count:'5–6 questions',time:'25s prep • 40s response',weight:'~15% overall • ~31% Speaking',type:'speechImage'},
+ retellLecture:{name:'Retell Lecture',icon:'🎤',count:'2–3 questions',time:'10s prep • 40s response',weight:'~6% overall • ~13% Speaking',type:'speechAudio'},
+ answerShortQuestion:{name:'Answer Short Question',icon:'💬',count:'5–6 questions',time:'Audio • short answer',weight:'~2% overall • ~4% Listening',type:'speechAudio'},
+ summarizeGroupDiscussion:{name:'Summarize Group Discussion',icon:'👥',count:'2–3 questions',time:'Listen • 10s prep • 40s response',weight:'~9% overall • ~19% Speaking',type:'speechAudio'},
+ respondSituation:{name:'Respond to a Situation',icon:'🎯',count:'2–3 questions',time:'10s prep • 40s response',weight:'~6% overall • ~13% Speaking',type:'speech'},
+ summarizeWrittenText:{name:'Summarize Written Text',icon:'📝',count:'2 questions',time:'10 min each',weight:'~7% overall • ~28% Writing',type:'writing'},
+ essay:{name:'Write Essay',icon:'✍️',count:'1 question',time:'20 min',weight:'~7% overall • ~31% Writing',type:'writing'}
+};
+const TIPS={
+ readAloud:['Read in meaningful chunks, not word-by-word.','Keep a steady pace; avoid restarting sentences.','Use punctuation to guide pauses.'],repeatSentence:['Listen for the meaning and word order.','Repeat immediately; do not add extra words.','If you miss a word, continue instead of freezing.'],describeImage:['Start with the main trend or feature.','Use simple comparisons and linking phrases.','Keep speaking until the time finishes.'],retellLecture:['Identify topic + 2–3 key points.','Use connectors: first, also, finally.','Do not try to reproduce every word.'],answerShortQuestion:['Give the shortest correct answer.','Do not over-explain.','Listen for the exact question type.'],summarizeGroupDiscussion:['Identify the shared topic and key viewpoints.','Mention important agreements/disagreements.','Use your own words and a clear structure.'],respondSituation:['Answer the situation directly.','Use polite, natural language.','Cover the requested action or response.'],summarizeWrittenText:['Write one clear sentence.','Keep the central idea and key supporting point.','Check grammar and word count.'],essay:['Plan quickly before writing.','Use clear paragraphs and examples.','Leave time to check grammar and spelling.'],personalIntroduction:['Speak naturally; this task is unscored.']};
+let DATA={},task=location.hash.slice(1)||'readAloud',idx=0,qs=[],rec=null,recording=false,finalText='',interim='',started=0,timer=null,lastElapsed=0;
+const $=id=>document.getElementById(id);
+function esc(x){return String(x??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function jp(action){return new Promise((resolve,reject)=>{const cb='pteCb_'+Date.now()+'_'+Math.random().toString(36).slice(2);const s=document.createElement('script');let done=false;const clean=()=>{if(done)return;done=true;clearTimeout(to);s.remove();delete window[cb]};const to=setTimeout(()=>{clean();reject(Error('Backend timeout. Check Apps Script deployment and API URL.'))},18000);window[cb]=d=>{clean();resolve(d)};s.onerror=()=>{clean();reject(Error('Backend connection failed. Check the Apps Script /exec URL.'))};s.src=API_URL+'?action='+encodeURIComponent(action)+'&callback='+cb+'&t='+Date.now();document.body.appendChild(s)})}
+function apiActionFor(t){return t}
+function buildTabs(){ $('tabs').innerHTML=Object.entries(META).map(([k,m])=>`<button class="tab ${k===task?'active':''}" data-task="${k}">${m.icon} ${m.name}<small>${m.count}</small></button>`).join('');document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{task=b.dataset.task;location.hash=task;idx=0;buildTabs();activate(task)}) }
+function renderTips(){const arr=TIPS[task]||[];$('tips').innerHTML=arr.map(x=>`<li>${esc(x)}</li>`).join('');$('hint').textContent=arr[0]||'Focus on the task requirements.'}
+function setDiag(extra=''){const sr=!!(window.SpeechRecognition||window.webkitSpeechRecognition);$('diag').textContent='Page HTTPS: '+(location.protocol==='https:'?'YES':'NO')+'\nMediaDevices: '+(navigator.mediaDevices?'YES':'NO')+'\nSpeech Recognition API: '+(sr?'YES':'NO')+'\nBrowser: '+navigator.userAgent.split(' ').slice(-2).join(' ') + (extra?'\n'+extra:'')}
+function resetScore(){ $('score').textContent='—';['content','fluency','pron'].forEach(n=>{ $(n+'V').textContent='—';$(n+'B').style.width='0%'}) }
+function normalize(s){return String(s||'').toLowerCase().replace(/[’']/g,"'").replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim()}
+function words(s){return normalize(s).split(' ').filter(Boolean)}
+function overlap(a,b){const A=words(a),B=words(b);if(!A.length)return 0;const counts={};B.forEach(w=>counts[w]=(counts[w]||0)+1);let hit=0;A.forEach(w=>{if(counts[w]>0){hit++;counts[w]--}});return Math.round(hit/A.length*100)}
+function estimateScore(q,spoken,elapsed){
+  const target=q.answer||q.transcript||q.text||q.prompt||q.question||'';
+  const o=overlap(target,spoken);
+  const n=words(spoken).length;
+  const sec=Math.max(1,elapsed/1000);
+  const wpm=Math.round(n/sec*60);
+
+  let content=Math.min(100,Math.max(0,o));
+
+  if(['describeImage','respondSituation','personalIntroduction'].includes(task)){
+    content=Math.round(Math.min(1,n/35)*70+(n>8?30:0));
+  }
+  if(task==='answerShortQuestion'){
+    const expected=q.answer||q.transcript||target;
+    content=Math.max(0,overlap(expected,spoken));
+  }
+  if(task==='summarizeGroupDiscussion'){
+    const ref=q.answer||q.transcript||target;
+    content=Math.max(0,Math.round(overlap(ref,spoken)*0.85 + Math.min(100,n/45*100)*0.15));
+  }
+  if(task==='retellLecture'){
+    const ref=q.answer||q.transcript||target;
+    content=Math.max(0,Math.round(overlap(ref,spoken)*0.85 + Math.min(100,n/45*100)*0.15));
+  }
+
+  let fluency=n?Math.min(100,Math.max(35,100-Math.abs(wpm-125)*.65)):0;
+  let pron=Math.round((fluency+Math.min(100,Math.max(0,
+    ['repeatSentence','answerShortQuestion'].includes(task)?o:fluency
+  )))/2);
+
+  let score=Math.round((content*.4+fluency*.3+pron*.3)*.8+10);
+  score=Math.max(10,Math.min(90,score));
+  return {score,content,fluency,pron,wpm};
+}
+function metric(n,v){$(n+'V').textContent=Math.round(v)+'%';$(n+'B').style.width=Math.max(0,Math.min(100,v))+'%'}
+function evaluate(){
+  const q=qs[idx]; if(!q)return;
+  const spoken=(finalText+' '+interim).trim();
+  if(!spoken){
+    alert('No speech transcript was captured. Click Test Microphone, then Start Practice and speak clearly.');
+    return;
+  }
+  const r=estimateScore(q,spoken,lastElapsed||Math.max(1,Date.now()-started));
+  $('score').textContent=r.score;
+  metric('content',r.content);
+  metric('fluency',r.fluency);
+  metric('pron',r.pron);
+  const expected=q.answer||q.transcript||q.text||q.prompt||q.question||'';
+  saveResult(META[task].name,q.id,expected,spoken,r);
+}
+function saveResult(t,id,e,a,r){
+  try{
+    fetch(API_URL,{
+      method:'POST',
+      headers:{'Content-Type':'application/x-www-form-urlencoded'},
+      body:new URLSearchParams({
+        task:t,questionId:id||'',expectedText:e,response:a,spokenText:a,
+        pteScore:r.score,content:Math.round(r.content),
+        fluency:Math.round(r.fluency),pronunciation:Math.round(r.pron),wpm:r.wpm
+      }),
+      mode:'no-cors'
+    }).catch(()=>{})
+  }catch(e){}
+}
+function fmt(sec){sec=Math.max(0,Math.floor(sec));return String(Math.floor(sec/60)).padStart(2,'0')+':'+String(sec%60).padStart(2,'0')}
+function renderTranscript(){const t=(finalText+' '+interim).trim();$('transcript').textContent=t||'Your recognized speech will appear here while you speak…';$('transcript').classList.toggle('empty',!t)}
+function stopRec(){if(rec){try{rec.stop()}catch(e){}}recording=false;clearInterval(timer);if($('start'))$('start').disabled=false;if($('stop'))$('stop').disabled=true}
+function setupRecognition(){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){setDiag('Speech recognition unavailable. Use current Chrome/Edge.');return false}rec=new SR();rec.continuous=true;rec.interimResults=true;rec.maxAlternatives=1;rec.lang='en-IN';rec.onstart=()=>{recording=true;started=Date.now();$('recStatus').textContent='● LIVE — listening';$('recStatus').className='status ok';$('liveBadge').textContent='LISTENING';$('start').disabled=true;$('stop').disabled=false;clearInterval(timer);timer=setInterval(()=>{$('timer').textContent=fmt(Math.floor((Date.now()-started)/1000))},250)};rec.onresult=e=>{let f='',x='';for(let i=0;i<e.results.length;i++){const r=e.results[i],t=(r[0]&&r[0].transcript)||'';if(r.isFinal)f+=' '+t;else x+=' '+t}finalText=f.trim();interim=x.trim();renderTranscript()};rec.onerror=e=>{const code=e?.error||'unknown';console.error(e);recording=false;clearInterval(timer);$('start').disabled=false;$('stop').disabled=true;$('liveBadge').textContent='ERROR';$('recStatus').textContent='Speech recognition: '+code;$('recStatus').className='status err';setDiag('Last speech error: '+code);if(code==='not-allowed'||code==='service-not-allowed')showPermissionModal();else if(code==='audio-capture')alert('No usable microphone was detected. Check Windows microphone input settings.');else if(code==='no-speech')alert('No speech was detected. Please speak closer to the microphone.');else if(code==='network')alert('Chrome could not reach its speech service. Check your internet connection.');};rec.onend=()=>{if(recording){try{rec.start()}catch(e){}}else{clearInterval(timer);if($('liveBadge'))$('liveBadge').textContent='READY';if($('recStatus')&&!$('recStatus').textContent.startsWith('Speech recognition:'))$('recStatus').textContent='Recording stopped'}};return true}
+async function requestMic(){if(!navigator.mediaDevices?.getUserMedia){$('micStatus').textContent='Microphone API unavailable in this browser.';$('micStatus').className='status err';return false}try{const stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true}});stream.getTracks().forEach(t=>t.stop());$('micStatus').textContent='Microphone permission granted and input detected.';$('micStatus').className='status ok';$('micPill').textContent='🟢 Mic ready';setDiag('Microphone permission: GRANTED');return true}catch(e){console.error(e);$('micStatus').textContent='Microphone permission: '+(e.name||'denied');$('micStatus').className='status err';setDiag('Microphone error: '+(e.name||e.message));showPermissionModal();return false}}
+function showPermissionModal(){const secure=location.protocol==='https:'||location.hostname==='localhost';$('permDetails').textContent='Secure context: '+secure+'\nMediaDevices: '+(!!navigator.mediaDevices)+'\nSpeechRecognition: '+(!!(window.SpeechRecognition||window.webkitSpeechRecognition))+'\n\nSite: '+location.hostname+'\n\nIf permission was blocked previously: click 🔒 → Site settings → Microphone → Allow, then reload.';$('permissionModal').classList.add('show')}
+function practiceExtras(q, opts={}){
+  let x='';
+  const transcript=String(q.transcript||'').trim();
+  const answer=String(q.answer||'').trim();
+  const template=String(q.templateImageUrl||q.templateImage||'').trim();
+
+  if(transcript && opts.transcript!==false){
+    x+=`<div class="media">
+      <button id="toggleTranscript" class="btn soft" style="width:100%">📄 Show Transcript for Practice</button>
+      <div id="transcriptPractice" class="transcript empty" style="display:none">${esc(transcript)}</div>
+    </div>`;
+  }
+  if(answer){
+    x+=`<div class="media">
+      <button id="toggleSolution" class="btn soft" style="width:100%">💡 Show Solution</button>
+      <div id="solutionPractice" class="transcript empty" style="display:none">${esc(answer)}</div>
+    </div>`;
+  }
+  if(template){
+    x+=`<div class="media">
+      <button id="toggleTemplate" class="btn soft" style="width:100%">🖼️ Show Template Image</button>
+      <div id="templatePractice" style="display:none;margin-top:9px"><img src="${esc(template)}" alt="Practice template"></div>
+    </div>`;
+  }
+  return x;
+}
+
+function bindPracticeExtras(){
+  const bind=(id,panel,show,hide)=>{
+    const b=$(id), p=$(panel);
+    if(!b||!p)return;
+    b.onclick=()=>{
+      const hidden=p.style.display==='none';
+      p.style.display=hidden?'block':'none';
+      b.textContent=hidden?hide:show;
+      if(panel==='transcriptPractice')p.classList.remove('empty');
+    };
+  };
+  bind('toggleTranscript','transcriptPractice','📄 Show Transcript for Practice','🙈 Hide Transcript');
+  bind('toggleSolution','solutionPractice','💡 Show Solution','🙈 Hide Solution');
+  bind('toggleTemplate','templatePractice','🖼️ Show Template Image','🙈 Hide Template Image');
+}
+
+function evaluateWriting(q,text){
+  const response=String(text||'').trim();
+  if(!response){alert('Write your answer first.');return;}
+  const n=words(response).length;
+  const ref=q.answer||'';
+  let content=ref?overlap(ref,response):Math.min(100,n/2.5);
+  let form=100;
+
+  if(task==='summarizeWrittenText'){
+    const sentenceCount=(response.match(/[.!?]+/g)||[]).length || 1;
+    if(n<5)form=30;
+    else if(n>75)form=45;
+    else if(sentenceCount>1)form=65;
+    else form=100;
+  }else{
+    if(n<180)form=55;
+    else if(n>320)form=70;
+  }
+
+  const vocab=Math.min(100,Math.round(new Set(words(response)).size/Math.max(1,n)*100+35));
+  const score=Math.max(10,Math.min(90,Math.round(content*.55+form*.30+vocab*.15)));
+
+  $('score').textContent=score;
+  metric('content',content);
+  metric('fluency',form);
+  metric('pron',vocab);
+
+  saveResult(META[task].name,q.id,ref,response,{
+    score,content,fluency:form,pron:vocab,wpm:0
+  });
+}
+
+function render(){
+  resetScore();
+  renderTips();
+
+  if(!qs.length){
+    $('main').innerHTML=`<div class="empty"><div style="font-size:42px">${META[task].icon}</div>
+      <h2>No questions found</h2>
+      <p class="instruction">Expected sheet: <b>${esc(META[task].name)}</b>. Check the sheet name and run Apps Script <b>diagnose</b>.</p>
+    </div>`;
+    return;
+  }
+
+  const q=qs[idx];
+  const m=META[task];
+  const text=q.text||q.prompt||q.question||'';
+  let body='';
+
+  if(task==='summarizeGroupDiscussion'){
+    body+=`<div class="notice">🎧 <b>Exam-style practice:</b> listen to the discussion, identify the main topic and viewpoints, then summarize the discussion in your own words.</div>`;
+    if(q.audioUrl) body+=`<div class="media"><audio controls preload="metadata" src="${esc(q.audioUrl)}"></audio></div>`;
+    else body+=`<div class="notice">⚠️ Audio URL is missing for this question. Add a public audio URL in the sheet.</div>`;
+    body+=`<div class="hintline">💡 Focus on: topic → speaker viewpoints → agreements/disagreements → short conclusion.</div>`;
+  } else if(task==='respondSituation'){
+    body+=`<div class="prompt">${esc(text||'Situation prompt not found.')}</div>`;
+    body+=`<div class="hintline">💡 Give a natural spoken response. Address the person or situation directly and include the requested action.</div>`;
+  } else if(task==='summarizeWrittenText'){
+    body+=`<div class="notice">📝 Read the passage and write <b>one sentence</b> summarizing the main idea and key supporting information.</div>`;
+    body+=`<div class="prompt" style="font-size:15px;align-items:flex-start">${esc(text||'Passage not found.')}</div>`;
+    body+=`<textarea id="answer" class="writeBox" placeholder="Write one clear sentence summary…"></textarea>
+      <div class="count" id="wordCount">0 words • Recommended maximum: 75 words</div>`;
+  } else if(task==='essay'){
+    body+=`<div class="notice">✍️ Write a clear, organized essay. Aim for approximately <b>200–300 words</b>.</div>`;
+    body+=`<div class="prompt" style="font-size:18px;min-height:150px">${esc(text||'Essay topic not found.')}</div>`;
+    body+=`<textarea id="answer" class="writeBox" placeholder="Write your essay here…"></textarea>
+      <div class="count" id="wordCount">0 words • Recommended range: 200–300 words</div>`;
+  } else if(m.type==='writing'){
+    body+=`<textarea id="answer" class="writeBox" placeholder="Type your answer here…"></textarea><div class="count" id="wordCount">0 words</div>`;
+  } else {
+    // Keep existing tasks working; audio-first for Answer Short Question.
+    if(task==='answerShortQuestion'){
+      body+=`<div class="notice">🎧 Listen carefully and answer with one word or a short phrase. The question text is hidden until you choose practice transcript.</div>`;
+    }else{
+      body+=`<div class="prompt">${esc(text||'Question content not found in this row.')}</div>`;
+    }
+    if(q.imageUrl)body+=`<div class="media"><img src="${esc(q.imageUrl)}" onerror="this.style.display='none'"></div>`;
+    if(q.audioUrl)body+=`<div class="media"><audio controls preload="metadata" src="${esc(q.audioUrl)}"></audio></div>`;
+  }
+
+  body+=`<div class="timer"><b id="timer">00:00</b><small>${esc(m.time)}</small></div>`;
+
+  const writing=m.type==='writing';
+  if(writing){
+    body+=practiceExtras(q,{transcript:false});
+    body+=`<div class="controls" style="margin-top:10px">
+      <button id="submitWrite" class="btn primary">✓ Finish & Score</button>
+      <button id="resetQ" class="btn soft">↻ Reset</button>
+      <button id="prev" class="btn soft">← Previous</button>
+      <button id="next" class="btn soft">Next →</button>
+    </div>`;
+  }else{
+    body+=`<div class="controls">
+      <button id="start" class="btn primary">🎙️ Start Practice</button>
+      <button id="stop" class="btn danger" disabled>■ Stop & Score</button>
+      <button id="prev" class="btn soft">← Previous</button>
+      <button id="next" class="btn soft">Next →</button>
+    </div>
+    <div class="transcript">
+      <div id="liveBadge" class="live">LIVE SPEECH TRANSCRIPT</div>
+      <div id="transcript" class="empty">Your recognized speech will appear here while you speak…</div>
+    </div>
+    <div id="recStatus" class="status">Ready. Test your microphone before starting.</div>`;
+    body+=practiceExtras(q,{transcript:true});
+  }
+
+  $('main').innerHTML=`<div class="qtop"><div><div class="kicker">QUESTION ${idx+1} / ${qs.length}</div>
+    <p class="instruction">${esc(m.name)} • ${esc(m.count)} • ${esc(m.weight)}</p></div>
+    <div class="chips"><span class="chip">${esc(m.time)}</span><span class="chip">${esc(m.weight)}</span></div>
+  </div>${body}`;
+
+  bindPracticeExtras();
+
+  if(writing){
+    $('answer').addEventListener('input',()=>{
+      const n=words($('answer').value).length;
+      const extra=task==='summarizeWrittenText'?' • Maximum 75 words':' • Recommended 200–300 words';
+      $('wordCount').textContent=n+' words'+extra;
+    });
+    $('submitWrite').onclick=()=>evaluateWriting(q,$('answer').value);
+  }else{
+    $('start').onclick=startRec;
+    $('stop').onclick=()=>{
+      lastElapsed=Date.now()-started;
+      stopRec();
+      setTimeout(evaluate,150);
+    };
+  }
+
+  $('prev').onclick=()=>{if(idx>0){idx--;render()}};
+  $('next').onclick=()=>{if(idx<qs.length-1){idx++;render()}};
+  $('resetQ').onclick=()=>{
+    stopRec();finalText='';interim='';lastElapsed=0;render();
+  };
+}
+async function startRec(){if(recording)return;if(!(window.SpeechRecognition||window.webkitSpeechRecognition)){alert('Speech recognition requires current Google Chrome or Microsoft Edge.');return}const ok=await requestMic();if(!ok)return;if(!rec)setupRecognition();if(!rec)return;finalText='';interim='';renderTranscript();$('timer').textContent='00:00';try{rec.start()}catch(e){if(!String(e).toLowerCase().includes('already started'))alert('Could not start speech recognition: '+e.message)}}
+async function speechTest(){if(!(window.SpeechRecognition||window.webkitSpeechRecognition)){alert('Speech recognition is not available. Use current Chrome or Edge.');return}const ok=await requestMic();if(!ok)return;if(!rec)setupRecognition();finalText='';interim='';$('transcript').textContent='Speak for 3–5 seconds…';try{rec.start();setTimeout(()=>{if(recording){lastElapsed=Date.now()-started;stopRec();renderTranscript();if(finalText)alert('Speech test successful. Live transcript captured.');else alert('Microphone opened, but no speech text was returned. Try speaking louder/closer and check Chrome speech permissions.')}},6000)}catch(e){alert('Speech test could not start: '+e.message)}}
+async function activate(t){stopRec();idx=Math.min(idx,Math.max(0,(DATA[t]?.questions||[]).length-1));qs=DATA[t]?.questions||[];$('qCount').textContent=Object.values(DATA).reduce((n,x)=>n+(x.questions?.length||0),0)||'—';render()}
+async function init(){buildTabs();setDiag();try{const d=await jp('speaking');DATA=d.speaking||{};$('loading').style.display='none';$('grid').style.display='grid';$('micPill').textContent=(window.SpeechRecognition||window.webkitSpeechRecognition)?'🎙️ Speech API ready':'⚠️ Speech API unavailable';activate(task)}catch(e){$('loading').innerHTML='<div style="color:#c53c52">⚠️ '+esc(e.message)+'</div><div style="font-size:10px;margin-top:7px">Check that your Apps Script deployment is public and the /exec URL in this file is correct.</div>'}}
+$('micTest').onclick=requestMic;$('speechTest').onclick=speechTest;$('allowMic').onclick=requestMic;$('closeModal').onclick=()=>$('permissionModal').classList.remove('show');window.addEventListener('beforeunload',stopRec);init();
+</script>
+</body></html>

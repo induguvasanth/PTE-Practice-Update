@@ -1,0 +1,472 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Vocabulary Learning</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--ink:#172238;--muted:#66758b;--line:#e2e7f0;--p:#5637d8;--p2:#7846ed}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,Segoe UI,Arial,sans-serif}button{font:inherit;cursor:pointer}.top{height:72px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:20}.brand{display:flex;align-items:center;gap:11px;font-weight:900;font-size:19px}.logo{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;display:grid;place-items:center}.dashboard,.pageBtn{border:1px solid var(--line);background:#fff;border-radius:13px;padding:11px 17px;font-weight:850;color:#334155}.page{max-width:1450px;margin:auto;padding:22px 28px}.hero{background:linear-gradient(125deg,#2b1a6b,#5631bf 56%,#8048ed);color:#fff;border-radius:25px;padding:28px}.hero h1{margin:0;font-size:30px}.hero p{margin:9px 0 0;opacity:.9}.tabs{display:flex;gap:9px;overflow-x:auto;padding:18px 2px}.tab{white-space:nowrap;border:1px solid #ded8f3;background:#fff;border-radius:13px;padding:11px 15px;font-size:13px;font-weight:850}.tab.active,.primary{color:#fff;background:linear-gradient(135deg,var(--p),var(--p2));border-color:transparent}.control{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px 18px;display:flex;justify-content:space-between;gap:15px;align-items:center;position:sticky;top:84px;z-index:10}.topicTitle{font-weight:950;font-size:16px}.sub{font-size:12px;color:var(--muted);margin-top:5px}.actions{display:flex;gap:9px}.btn{border:0;border-radius:13px;padding:11px 16px;font-size:13px;font-weight:900}.stop{color:#a42636;background:#fff1f2;border:1px solid #f1c3ca}.hidden{display:none!important}.list{margin-top:18px;display:grid;gap:16px}.card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;transition:.3s}.card.active{border-color:#8f7af0;background:#faf8ff;box-shadow:0 0 0 4px #6745e412}.cardHead{display:flex;justify-content:space-between}.number{font-size:11px;font-weight:950;color:#6d5aca}.wordRow{display:flex;align-items:center;gap:12px;margin-top:6px}.word{font-size:28px;font-weight:950}.pos,.badge{font-size:12px;padding:7px 10px;background:#eef1f6;border-radius:20px;color:#536174;font-weight:800}.iconBtn,.listenSmall{border:1px solid #ddd8f4;background:#fff;color:#5637d8;border-radius:11px;padding:9px 11px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}.block{border-radius:17px;padding:16px;background:#f8fafc;border:1px solid #e9edf3}.label{font-size:11px;font-weight:950;letter-spacing:.08em;color:#738096;margin-bottom:8px}.sentence{font-size:17px;line-height:1.6}.telugu{font-family:"Noto Sans Telugu","Nirmala UI","Gautami",sans-serif;font-size:18px;line-height:1.7}.blockTop{display:flex;justify-content:space-between;gap:10px}.footer{display:flex;justify-content:space-between;margin-top:16px}.resource{display:inline-flex;text-decoration:none;border:1px solid #ddd8f4;color:#4c32b0;background:#fff;border-radius:11px;padding:9px 12px;font-size:12px;font-weight:850}.pagination{display:flex;justify-content:center;align-items:center;gap:12px;margin:24px 0}.empty,.error{padding:35px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:20px}.error{background:#fff1f2;color:#a42636}.status{font-size:12px;font-weight:900;padding:8px 11px;border-radius:20px;background:#f0f2f6}@media(max-width:800px){.grid{grid-template-columns:1fr}.control{position:static;flex-direction:column;align-items:flex-start}.top{padding:0 15px}.page{padding:16px}}
+</style></head><body>
+<header class="top"><div class="brand"><div class="logo">V</div><span>Vocabulary Learning</span></div><button class="dashboard" onclick="location.href='index.html'">← Dashboard</button></header>
+<main class="page"><section class="hero"><h1>Build Vocabulary. Hear It. Understand It. Remember It.</h1><p>10 words per page • Indian English + Telugu voice preference • automatic guided learning</p></section><div id="tabs" class="tabs"></div>
+<section class="control"><div><div id="topicTitle" class="topicTitle">Vocabulary</div><div id="topicSub" class="sub">Loading words...</div></div><div class="actions"><span id="status" class="status">Ready</span><button id="startBtn" class="btn primary">▶ Start Auto Learning</button><button id="stopBtn" class="btn stop hidden">■ Stop</button></div></section>
+<section id="list" class="list"></section><div class="pagination"><button id="prevPage" class="pageBtn">← Previous 10</button><strong id="pageInfo">Page 1</strong><button id="nextPage" class="pageBtn">Next 10 →</button></div></main>
+
+<script>
+const API_URL='https://script.google.com/macros/s/AKfycby93OqAVZly8hOur-nq1mxZ2rKWS1Aif4sSrlbz8Y2Ot4b8Y_RFbvWqSn-_D--GsDZ-/exec';
+const PAGE_SIZE=10;
+
+const TOPICS=[
+  ['vocabularyDailyUse','Daily Use'],
+  ['vocabularyAcademic','Academic'],
+  ['vocabularyPteHighFrequency','PTE High-Frequency'],
+  ['vocabularySynonymsAntonyms','Synonyms & Antonyms'],
+  ['vocabularyBusinessWork','Business & Work'],
+  ['vocabularyEducation','Education'],
+  ['vocabularyScienceTechnology','Science & Technology'],
+  ['vocabularyEnvironment','Environment'],
+  ['vocabularyHealthLifestyle','Health & Lifestyle'],
+  ['vocabularyTravelSociety','Travel & Society'],
+  ['vocabularyAdvanced','Advanced'],
+  ['vocabularyConfusingWords','Confusing Words']
+];
+
+let currentTopic=TOPICS[0][0];
+let words=[];
+let page=0;
+let stopRequested=false;
+let voices=[];
+let cloudTtsEnabled=false;
+let cloudTtsLoading=false;
+
+const $=id=>document.getElementById(id);
+const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+
+function loadVoices(){
+  if('speechSynthesis' in window){
+    voices=window.speechSynthesis.getVoices()||[];
+  }
+}
+if('speechSynthesis' in window){
+  loadVoices();
+  window.speechSynthesis.onvoiceschanged=loadVoices;
+}
+
+function jsonp(action,params={}){
+  return new Promise((resolve,reject)=>{
+    const cb='pteVocab_'+Date.now()+'_'+Math.floor(Math.random()*99999);
+    const s=document.createElement('script');
+    const timer=setTimeout(()=>{
+      cleanup();
+      reject(new Error('Backend timeout'));
+    },20000);
+
+    function cleanup(){
+      clearTimeout(timer);
+      try{s.remove()}catch(e){}
+      try{delete window[cb]}catch(e){window[cb]=undefined}
+    }
+
+    window[cb]=data=>{
+      cleanup();
+      resolve(data);
+    };
+
+    s.onerror=()=>{
+      cleanup();
+      reject(new Error('Backend connection failed'));
+    };
+
+    const q=new URLSearchParams({
+      action:String(action),
+      callback:cb,
+      t:String(Date.now()),
+      ...params
+    });
+
+    s.src=API_URL+'?'+q.toString();
+    document.body.appendChild(s);
+  });
+}
+
+async function loadTtsConfig(){
+  if(cloudTtsLoading) return;
+  cloudTtsLoading=true;
+  try{
+    const data=await jsonp('vocabularyTtsConfig');
+    cloudTtsEnabled=!!(data && data.ok && data.cloudEnabled);
+  }catch(e){
+    cloudTtsEnabled=false;
+  }finally{
+    cloudTtsLoading=false;
+  }
+}
+
+function renderTabs(){
+  const el=$('tabs');
+  el.innerHTML='';
+  TOPICS.forEach(([key,label])=>{
+    const btn=document.createElement('button');
+    btn.className='tab'+(key===currentTopic?' active':'');
+    btn.textContent=label;
+    btn.onclick=()=>loadTopic(key);
+    el.appendChild(btn);
+  });
+}
+
+async function loadTopic(key){
+  stopAuto();
+  currentTopic=key;
+  page=0;
+  renderTabs();
+  $('list').innerHTML='<div class="empty">Loading vocabulary...</div>';
+
+  try{
+    const data=await jsonp(key);
+    if(data && data.ok===false) throw new Error(data.error||'Unable to load vocabulary');
+
+    words=(data && data.questions ? data.questions : [])
+      .filter(item=>String(item.word||item.question||'').trim());
+
+    render();
+  }catch(err){
+    $('list').innerHTML=
+      '<div class="error"><b>Unable to load Vocabulary.</b><br>'+
+      esc(err.message||String(err))+
+      '<br><br>Check Code.gs, the Vocabulary sheet names, and redeploy the web app.</div>';
+  }
+}
+
+function currentItems(){
+  return words.slice(page*PAGE_SIZE,page*PAGE_SIZE+PAGE_SIZE);
+}
+
+function field(item,name){
+  const map={
+    word:item.word||item.question||'',
+    sentence:item.exampleSentence||item.sentence||item.text||'',
+    teluguWord:item.teluguWordMeaning||item.teluguMeaning||'',
+    teluguSentence:item.teluguSentenceMeaning||item.teluguSentence||''
+  };
+  return String(map[name]||'').trim();
+}
+
+function render(){
+  const topic=TOPICS.find(item=>item[0]===currentTopic);
+  const label=topic?topic[1]:'Vocabulary';
+
+  $('topicTitle').textContent=label+' Vocabulary';
+  $('topicSub').textContent=words.length
+    ? words.length+' words available • 10 words per page'
+    : 'No words found';
+
+  const items=currentItems();
+
+  if(!items.length){
+    $('list').innerHTML=
+      '<div class="empty">No vocabulary found. Required columns: Word, Example Sentence, Telugu Word Meaning, Telugu Sentence Meaning.</div>';
+    updatePage();
+    return;
+  }
+
+  $('list').innerHTML=items.map((item,index)=>{
+    const number=page*PAGE_SIZE+index+1;
+    const word=field(item,'word');
+    const sentence=field(item,'sentence');
+    const teluguWord=field(item,'teluguWord');
+    const teluguSentence=field(item,'teluguSentence');
+    const pos=item.partOfSpeech||'Vocabulary';
+    const resource=String(item.resourceUrl||item.resource||'').trim();
+
+    return `
+      <article id="card-${index}" class="card">
+        <div class="cardHead">
+          <div>
+            <div class="number">WORD ${String(number).padStart(2,'0')}</div>
+            <div class="wordRow">
+              <div class="word">${esc(word)}</div>
+              <span class="pos">${esc(pos)}</span>
+              <button class="iconBtn" title="Listen to word" onclick="speakNow(${index},'word')">🔊</button>
+            </div>
+          </div>
+          <span id="badge-${index}" class="badge">Ready</span>
+        </div>
+
+        <div class="grid">
+          <div class="block">
+            <div class="blockTop">
+              <div class="label">TELUGU WORD MEANING</div>
+              <button class="listenSmall" onclick="speakNow(${index},'teluguWord')">🔊 వినండి</button>
+            </div>
+            <div class="telugu">${esc(teluguWord)}</div>
+          </div>
+
+          <div class="block">
+            <div class="blockTop">
+              <div class="label">EXAMPLE SENTENCE</div>
+              <button class="listenSmall" onclick="speakNow(${index},'sentence')">🔊 Listen</button>
+            </div>
+            <div class="sentence">${esc(sentence)}</div>
+          </div>
+
+          <div class="block">
+            <div class="blockTop">
+              <div class="label">TELUGU SENTENCE MEANING</div>
+              <button class="listenSmall" onclick="speakNow(${index},'teluguSentence')">🔊 వినండి</button>
+            </div>
+            <div class="telugu">${esc(teluguSentence)}</div>
+          </div>
+
+          <div class="block">
+            <div class="label">AUTO LEARNING ORDER</div>
+            <div class="sub">
+              English word → 1.5 sec → Telugu word meaning → 1.5 sec →
+              English sentence → Telugu sentence meaning → 3 sec → Next card
+            </div>
+          </div>
+        </div>
+
+        <div class="footer">
+          <button class="btn primary" onclick="startFrom(${index})">▶ Start From This Card</button>
+          ${resource?`<a class="resource" href="${attr(resource)}" target="_blank" rel="noopener">🔗 Open Resource ↗</a>`:''}
+        </div>
+      </article>
+    `;
+  }).join('');
+
+  updatePage();
+}
+
+function updatePage(){
+  const totalPages=Math.max(1,Math.ceil(words.length/PAGE_SIZE));
+  $('pageInfo').textContent='Page '+(page+1)+' of '+totalPages;
+  $('prevPage').disabled=page===0;
+  $('nextPage').disabled=page>=totalPages-1;
+}
+
+function pickVoice(language){
+  const exact=language==='te'?'te-in':'en-in';
+  const prefix=language==='te'?'te':'en';
+
+  return (
+    voices.find(v=>String(v.lang||'').toLowerCase()===exact) ||
+    voices.find(v=>String(v.lang||'').toLowerCase().startsWith(prefix+'-in')) ||
+    voices.find(v=>String(v.lang||'').toLowerCase().startsWith(prefix)) ||
+    null
+  );
+}
+
+function browserSpeak(text,language){
+  return new Promise(resolve=>{
+    const value=String(text||'').trim();
+    if(!value || !('speechSynthesis' in window)){
+      resolve();
+      return;
+    }
+
+    window.speechSynthesis.cancel();
+
+    const utterance=new SpeechSynthesisUtterance(value);
+    utterance.lang=language==='te'?'te-IN':'en-IN';
+
+    const voice=pickVoice(language);
+    if(voice) utterance.voice=voice;
+
+    utterance.rate=language==='te'?0.90:0.94;
+    utterance.pitch=1;
+
+    utterance.onend=()=>resolve();
+    utterance.onerror=()=>resolve();
+
+    window.speechSynthesis.speak(utterance);
+  });
+}
+
+async function cloudSpeak(text,language){
+  const value=String(text||'').trim();
+  if(!cloudTtsEnabled || !value) return false;
+
+  try{
+    const data=await jsonp('vocabularyTts',{
+      text:value,
+      lang:language==='te'?'te-IN':'en-IN'
+    });
+
+    if(!data || !data.ok || !data.audioContent) return false;
+
+    await new Promise((resolve,reject)=>{
+      const audio=new Audio('data:audio/mpeg;base64,'+data.audioContent);
+      audio.onended=resolve;
+      audio.onerror=reject;
+      audio.play().catch(reject);
+    });
+
+    return true;
+  }catch(e){
+    return false;
+  }
+}
+
+async function speak(text,language){
+  const value=String(text||'').trim();
+  if(!value) return;
+
+  // Preferred future path: Google Cloud TTS when enabled in Code.gs.
+  // Reliable fallback: Browser Web Speech API.
+  const cloudWorked=await cloudSpeak(value,language);
+  if(!cloudWorked){
+    await browserSpeak(value,language);
+  }
+}
+
+function speakNow(index,type){
+  const item=currentItems()[index];
+  if(!item) return;
+
+  const language=(type==='teluguWord'||type==='teluguSentence')?'te':'en';
+  const name=type==='teluguWord'?'teluguWord':
+             type==='teluguSentence'?'teluguSentence':
+             type==='sentence'?'sentence':'word';
+
+  speak(field(item,name),language);
+}
+
+function setActive(index){
+  document.querySelectorAll('.card').forEach(card=>card.classList.remove('active'));
+  document.querySelectorAll('.badge').forEach(badge=>badge.textContent='Ready');
+
+  const card=$('card-'+index);
+  const badge=$('badge-'+index);
+
+  if(card){
+    card.classList.add('active');
+    card.scrollIntoView({behavior:'smooth',block:'center'});
+  }
+  if(badge) badge.textContent='▶ Learning';
+}
+
+function setControls(running){
+  $('startBtn').classList.toggle('hidden',running);
+  $('stopBtn').classList.toggle('hidden',!running);
+}
+
+async function run(startIndex=0){
+  stopRequested=false;
+  setControls(true);
+  $('status').textContent=cloudTtsEnabled
+    ? 'Auto learning • Cloud TTS + fallback'
+    : 'Auto learning • Browser TTS';
+
+  const items=currentItems();
+
+  for(let i=startIndex;i<items.length;i++){
+    if(stopRequested) break;
+
+    setActive(i);
+    const item=items[i];
+
+    // Exact requested order:
+    // 1. English word
+    // 2. 1.5 sec delay
+    // 3. Telugu word meaning
+    // 4. 1.5 sec delay
+    // 5. English example sentence
+    // 6. Telugu sentence meaning
+    // 7. 3 sec delay
+    // 8. Next card
+    await speak(field(item,'word'),'en');
+    if(stopRequested) break;
+
+    await sleep(1500);
+    if(stopRequested) break;
+
+    await speak(field(item,'teluguWord'),'te');
+    if(stopRequested) break;
+
+    await sleep(1500);
+    if(stopRequested) break;
+
+    await speak(field(item,'sentence'),'en');
+    if(stopRequested) break;
+
+    await speak(field(item,'teluguSentence'),'te');
+    if(stopRequested) break;
+
+    await sleep(3000);
+  }
+
+  if(stopRequested){
+    setControls(false);
+    $('status').textContent='Stopped';
+    return;
+  }
+
+  const totalPages=Math.max(1,Math.ceil(words.length/PAGE_SIZE));
+
+  // Automatically continue to the next page after all 10 cards.
+  if(page<totalPages-1){
+    page++;
+    render();
+    $('status').textContent='Next 10 words...';
+    await sleep(600);
+
+    if(!stopRequested){
+      return run(0);
+    }
+  }
+
+  setControls(false);
+  $('status').textContent='Completed ✓';
+}
+
+function stopAuto(){
+  stopRequested=true;
+
+  if('speechSynthesis' in window){
+    window.speechSynthesis.cancel();
+  }
+
+  setControls(false);
+  $('status').textContent='Ready';
+}
+
+function startFrom(index){
+  stopAuto();
+  setTimeout(()=>run(index),50);
+}
+
+$('startBtn').onclick=()=>run(0);
+$('stopBtn').onclick=stopAuto;
+
+$('prevPage').onclick=()=>{
+  if(page>0){
+    stopAuto();
+    page--;
+    render();
+  }
+};
+
+$('nextPage').onclick=()=>{
+  const totalPages=Math.max(1,Math.ceil(words.length/PAGE_SIZE));
+  if(page<totalPages-1){
+    stopAuto();
+    page++;
+    render();
+  }
+};
+
+function esc(value){
+  return String(value??'').replace(/[&<>"']/g,char=>({
+    '&':'&amp;',
+    '<':'&lt;',
+    '>':'&gt;',
+    '"':'&quot;',
+    "'":'&#39;'
+  }[char]));
+}
+
+function attr(value){
+  return esc(value);
+}
+
+renderTabs();
+loadTtsConfig();
+loadTopic(currentTopic);
+</script>
+</body>
+</html>

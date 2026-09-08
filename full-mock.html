@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Full Mock Test • PTE Practice</title>
+<style>
+:root{
+  --ink:#26374f;--muted:#6b7789;--line:#dce2ec;--soft:#f7f8fc;
+  --purple:#5636d5;--purple2:#7b43e8;--shadow:0 18px 48px rgba(30,41,59,.11);
+}
+*{box-sizing:border-box} body{margin:0;background:linear-gradient(180deg,#f5f6fb 0,#eef1f7 100%);font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--ink)}
+button,input,textarea{font:inherit}.top{height:86px;background:rgba(255,255,255,.74);backdrop-filter:blur(18px);border-bottom:1px solid #dfe4ee;display:flex;align-items:center;justify-content:space-between;padding:0 26px;position:sticky;top:0;z-index:20}
+.brand{display:flex;align-items:center;gap:13px;font-size:22px;font-weight:900}.logo{width:46px;height:46px;border-radius:15px;background:linear-gradient(135deg,#5133ca,#7a49e9);color:#fff;display:grid;place-items:center;font-weight:900;box-shadow:0 10px 25px #5636d544}
+.back,.btn{border:1px solid #d7deea;background:rgba(255,255,255,.72);border-radius:14px;padding:12px 18px;font-weight:850;color:#334155;cursor:pointer}.btn.primary{border:0;color:#fff;background:linear-gradient(135deg,var(--purple),var(--purple2));box-shadow:0 12px 24px rgba(86,54,213,.25)}.btn:disabled{opacity:.48;cursor:not-allowed}
+.page{max-width:1780px;margin:0 auto;padding:26px 30px 44px}.hero{padding:26px 32px;border-radius:24px;background:linear-gradient(120deg,#332469,#5d35cc,#7d47e8);color:#fff;box-shadow:var(--shadow);margin-bottom:20px}.heroRow{display:flex;justify-content:space-between;gap:24px;align-items:center}.hero h1{margin:0 0 8px;font-size:32px}.hero p{margin:0;color:#e8e1ff;font-size:15px}.heroStats{display:flex;gap:10px}.heroStat{min-width:112px;padding:12px 16px;border:1px solid #ffffff30;border-radius:16px;background:#ffffff12;text-align:center}.heroStat b{display:block;font-size:22px}.heroStat small{color:#e8e1ff}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 370px;gap:20px}.card{background:rgba(255,255,255,.76);backdrop-filter:blur(18px);border:1px solid rgba(211,219,232,.95);border-radius:24px;box-shadow:0 12px 32px rgba(30,41,59,.06)}
+.practice{padding:26px}.side{padding:20px;height:max-content;position:sticky;top:104px}.statusLine{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:14px}.eyebrow{font-size:11px;font-weight:900;letter-spacing:1.4px;color:#6f63a9}.taskTitle{font-size:27px;font-weight:900;margin:4px 0 3px}.meta{color:var(--muted);font-size:14px}.sectionPill,.ready{padding:9px 13px;border-radius:999px;background:#f0edff;color:#5a42c8;font-size:12px;font-weight:900}
+.tabs{display:flex;gap:8px;padding:8px;border:1px solid var(--line);border-radius:18px;background:#fff;margin-bottom:18px;overflow:auto}.tab{border:0;background:transparent;padding:11px 14px;border-radius:12px;font-weight:850;color:#64748b;white-space:nowrap;cursor:pointer}.tab.active{color:#fff;background:linear-gradient(135deg,#5537d6,#7747e8)}
+.questionLabel{font-size:11px;font-weight:900;letter-spacing:1px;color:#64748b;margin:6px 0 10px}.prompt{min-height:250px;padding:28px;border:1px solid #d8deea;border-radius:22px;background:linear-gradient(145deg,#fff,#f6f7fb);font-size:21px;line-height:1.6;display:flex;flex-direction:column;justify-content:center;gap:16px}.prompt img{max-width:100%;max-height:420px;object-fit:contain;border-radius:16px;background:#fff}.audioBox{padding:14px;border-radius:16px;background:#f6f7fc;border:1px solid #dfe4ed}.audioBox audio{width:100%}.hint{padding:13px 15px;border:1px solid #ead39a;background:#fffaf0;border-radius:15px;color:#6f5a2d;font-size:14px;margin:14px 0}
+.options{display:grid;gap:10px;margin-top:16px}.option{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;border:1px solid #d9dfeb;background:#fff;border-radius:15px;cursor:pointer}.option:hover{border-color:#a89be9}.option input{margin-top:4px;accent-color:#6040da}.answerBox{margin-top:16px}.answerBox textarea,.answerBox input{width:100%;border:1px solid #d7deea;border-radius:16px;background:#fff;padding:15px;color:#26374f;outline:none}.answerBox textarea{min-height:130px;resize:vertical}.answerBox textarea:focus,.answerBox input:focus{border-color:#7357df;box-shadow:0 0 0 4px #7357df18}
+.reorder{display:grid;gap:9px;margin-top:15px}.reorderItem{display:flex;gap:10px;align-items:center}.reorderItem span{flex:1;padding:12px 14px;border:1px solid #dce2ec;background:#fff;border-radius:13px}.mini{padding:8px 11px;border:1px solid #d8de7;border-radius:10px;background:#fff;cursor:pointer}.solution{margin-top:18px;padding:18px;border-radius:18px;border:1px solid #d8d1ff;background:#f7f5ff;display:none}.solution.show{display:block}.solution h3{margin:0 0 9px;font-size:16px}.solution pre{white-space:pre-wrap;font-family:inherit;line-height:1.55;margin:0}.resourceRow{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}.resource{border:1px solid #d7ddeb;border-radius:12px;padding:9px 12px;background:#fff;color:#4338ca;font-weight:800;text-decoration:none;cursor:pointer}
+.controls{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;align-items:center}.jump{display:flex;align-items:center;gap:7px;padding:6px 8px;border:1px solid #dbe1ec;border-radius:14px;background:#fff}.jump label{font-size:11px;font-weight:900;color:#64748b}.jump input{width:76px;border:1px solid #d9dfeb;border-radius:10px;padding:8px 9px;font-weight:900}.progressWrap{margin-top:10px}.progressText{display:flex;justify-content:space-between;font-size:12px;color:#64748b;margin-bottom:7px}.bar{height:10px;background:#e8ebf2;border-radius:999px;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,#5a3bd6,#7d49ea);transition:.3s}
+.timer{font-size:38px;font-weight:950;color:#4930b9;letter-spacing:-1px}.side h3{margin:0 0 8px}.side small{color:#6b7789}.sideActions{display:flex;gap:9px;margin-top:15px}.sideActions .btn{flex:1}.sectionList{display:grid;gap:8px;margin-top:16px}.sectionRow{display:flex;justify-content:space-between;padding:11px 12px;border:1px solid #e0e5ed;border-radius:13px;background:#fff;font-size:13px}.sectionRow b{font-size:12px}.flagged{color:#b45309;font-weight:900}.summary{display:none;padding:26px}.summary.show{display:block}.summaryGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}.stat{padding:16px;border:1px solid #dfe4ee;border-radius:16px;background:#fff}.stat b{display:block;font-size:26px;margin-top:5px}.reviewList{display:grid;gap:12px}.reviewItem{padding:16px;border:1px solid #dfe4ed;border-radius:16px;background:#fff}.reviewHead{display:flex;justify-content:space-between;gap:10px;margin-bottom:8px;font-weight:900}.empty{padding:35px;text-align:center;color:#64748b}
+@media(max-width:1000px){.layout{grid-template-columns:1fr}.side{position:static}.heroRow{flex-direction:column;align-items:flex-start}.heroStats{width:100%}.heroStat{flex:1}.top{padding:0 14px}.page{padding:16px}.summaryGrid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.hero h1{font-size:25px}.practice{padding:16px}.prompt{padding:18px;font-size:18px;min-height:210px}.heroStats{flex-wrap:wrap}.heroStat{min-width:90px}.summaryGrid{grid-template-columns:1fr}.top .brand{font-size:18px}.back{padding:10px 12px}.controls .btn{flex:1}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand"><div class="logo">P</div><span>Full Mock Test</span></div>
+  <button class="back" onclick="location.href='index.html'">← Dashboard</button>
+</header>
+
+<main class="page">
+  <section class="hero">
+    <div class="heroRow">
+      <div>
+        <h1>📝 Full Random PTE Mock Test</h1>
+        <p>One 2-hour exam-style practice session using a fresh random selection from your completed PTE question sheets.</p>
+      </div>
+      <div class="heroStats">
+        <div class="heroStat"><b id="heroQuestions">—</b><small>questions</small></div>
+        <div class="heroStat"><b>2:00</b><small>exam time</small></div>
+        <div class="heroStat"><b>Random</b><small>question set</small></div>
+      </div>
+    </div>
+  </section>
+
+  <div id="startScreen" class="card practice">
+    <div class="statusLine"><div><div class="eyebrow">FINAL PRACTICE MODE</div><div class="taskTitle">Ready to start your full mock?</div><div class="meta">Questions are randomly selected once and stay fixed for this attempt.</div></div><span class="ready">Ready</span></div>
+    <div class="hint">The timer begins only when you press Start Full Mock. Solutions, transcripts, template images and explanations remain available during review after you finish.</div>
+    <button id="startMock" class="btn primary">▶ Start 2-Hour Mock Test</button>
+  </div>
+
+  <div id="testArea" class="layout" style="display:none">
+    <section class="card practice">
+      <div id="tabs" class="tabs"></div>
+      <div class="statusLine">
+        <div>
+          <div id="sectionEyebrow" class="eyebrow">SECTION</div>
+          <div id="taskTitle" class="taskTitle">Loading...</div>
+          <div id="taskMeta" class="meta"></div>
+        </div>
+        <span id="sectionPill" class="sectionPill">Practice</span>
+      </div>
+      <div class="questionLabel" id="questionLabel">QUESTION</div>
+      <div id="questionPrompt" class="prompt"></div>
+      <div id="hint" class="hint">Complete the task, then continue with Next.</div>
+      <div id="answerArea"></div>
+      <div id="solution" class="solution"></div>
+      <div class="controls">
+        <button id="prevBtn" class="btn">← Previous</button>
+        <div class="jump"><label for="jumpInput">Question</label><input id="jumpInput" type="number" min="1" inputmode="numeric"><button id="jumpGo" class="btn">Go</button></div>
+        <button id="nextBtn" class="btn">Next →</button>
+        <button id="flagBtn" class="btn">⚑ Flag</button>
+        <button id="finishBtn" class="btn primary">Finish & Review</button>
+      </div>
+      <div class="progressWrap"><div class="progressText"><span id="progressLeft">Question</span><span id="answeredText">0 answered</span></div><div class="bar"><div id="progressFill" class="fill"></div></div></div>
+    </section>
+
+    <aside class="card side">
+      <h3>Exam controls</h3>
+      <div id="timer" class="timer">2:00:00</div>
+      <small id="timerState">Ready</small>
+      <div class="sideActions"><button id="pauseBtn" class="btn">Pause</button><button id="endBtn" class="btn primary">Finish Test</button></div>
+      <div class="sectionList" id="sectionList"></div>
+      <div class="hint" style="margin-top:15px">This is a learning practice mock. The final review provides answer checking where objective answers are available and model answers for open-response tasks.</div>
+    </aside>
+  </div>
+
+  <section id="summary" class="card summary">
+    <div class="eyebrow">MOCK TEST COMPLETE</div>
+    <h2 style="margin:6px 0">Review your performance</h2>
+    <div class="summaryGrid">
+      <div class="stat"><small>Questions</small><b id="sumQuestions">0</b></div>
+      <div class="stat"><small>Answered</small><b id="sumAnswered">0</b></div>
+      <div class="stat"><small>Objective accuracy</small><b id="sumAccuracy">—</b></div>
+      <div class="stat"><small>Time used</small><b id="sumTime">00:00</b></div>
+    </div>
+    <div id="reviewList" class="reviewList"></div>
+    <div class="controls"><button id="reviewAgain" class="btn primary">Review Questions</button><button id="newMock" class="btn">New Random Mock</button><button class="btn" onclick="location.href='index.html'">← Dashboard</button></div>
+  </section>
+</main>
+
+<script>
+const API_URL='https://script.google.com/macros/s/AKfycby93OqAVZly8hOur-nq1mxZ2rKWS1Aif4sSrlbz8Y2Ot4b8Y_RFbvWqSn-_D--GsDZ-/exec';
+const KEY='pte_full_mock_state_v1';
+const DURATION=120*60;
+let state={questions:[],index:0,answers:{},flags:{},started:false,paused:false,finished:false,remaining:DURATION,seed:'',startedAt:0,interval:null,reviewMode:false};
+
+const $=id=>document.getElementById(id);
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm=v=>String(v??'').toLowerCase().replace(/^[a-f]\s*[.)-]\s*/i,'').replace(/\s+/g,' ').trim();
+
+function jsonp(action,extra={}){
+  return new Promise((resolve,reject)=>{
+    const cb='pteMock_'+Date.now()+'_'+Math.random().toString(36).slice(2);
+    const q=new URLSearchParams({action,callback:cb,...extra});
+    const s=document.createElement('script');
+    const t=setTimeout(()=>{cleanup();reject(new Error('Backend timeout. Check the Apps Script deployment.'));},20000);
+    function cleanup(){clearTimeout(t);delete window[cb];s.remove();}
+    window[cb]=data=>{cleanup();resolve(data);};
+    s.onerror=()=>{cleanup();reject(new Error('Backend connection failed.'));};
+    s.src=API_URL+(API_URL.includes('?')?'&':'?')+q.toString();
+    document.head.appendChild(s);
+  });
+}
+function makeSeed(){return String(Date.now())+'-'+Math.random().toString(36).slice(2);}
+async function loadMock(seed){
+  const data=await jsonp('mockRandom',{seed});
+  if(!data?.ok||!data.mock?.questions?.length) throw new Error(data?.error||'No questions found. Check the finished question sheets.');
+  state.questions=data.mock.questions;
+  state.seed=data.mock.seed||seed;
+  $('heroQuestions').textContent=state.questions.length;
+  buildTabs(); buildSectionList(); save();
+}
+function buildTabs(){
+  const sections=[...new Set(state.questions.map(q=>q.section||'Practice'))];
+  $('tabs').innerHTML=sections.map(s=>`<button class="tab" data-section="${esc(s)}">${esc(s)} <small>(${state.questions.filter(q=>q.section===s).length})</small></button>`).join('');
+  [...$('tabs').querySelectorAll('.tab')].forEach(b=>b.onclick=()=>{const i=state.questions.findIndex((q,idx)=>idx>=state.index&&q.section===b.dataset.section);state.index=i>=0?i:state.questions.findIndex(q=>q.section===b.dataset.section);render();});
+}
+function buildSectionList(){
+  const sections=[...new Set(state.questions.map(q=>q.section||'Practice'))];
+  $('sectionList').innerHTML=sections.map(s=>`<div class="sectionRow"><span>${esc(s)}</span><b>${state.questions.filter(q=>q.section===s).length} Q</b></div>`).join('');
+}
+function taskInstruction(q){
+  const map={
+    personalIntroduction:'Introduce yourself naturally.',
+    readAloud:'Read the text aloud clearly and naturally.',
+    repeatSentence:'Listen carefully and repeat the sentence.',
+    describeImage:'Study the image and describe the main information.',
+    retellLecture:'Listen to the lecture and retell the key points.',
+    answerShortQuestion:'Listen to the question and give a short answer.',
+    summarizeGroupDiscussion:'Listen and summarize the discussion.',
+    respondSituation:'Listen/read the situation and respond appropriately.',
+    summarizeWrittenText:'Write a concise summary using the key ideas.',
+    essay:'Write a well-organized essay answering the prompt.',
+    readingRWBlanks:'Choose the best words for the blanks.',
+    readingMCQMultiple:'Select all answers that are correct.',
+    reorderParagraph:'Put the sentences in the best logical order.',
+    readingBlanks:'Complete the text using the best available words.',
+    readingMCQSingle:'Select the best answer.',
+    summarizeSpoken:'Listen and summarize the spoken text.',
+    listeningMCQMultiple:'Listen and select all correct answers.',
+    listeningBlanks:'Listen and complete the missing words.',
+    highlightSummary:'Listen and choose the best summary.',
+    listeningMCQSingle:'Listen and select the best answer.',
+    missingWord:'Listen and choose the missing word.',
+    incorrectWords:'Listen and identify the incorrect words.',
+    dictation:'Listen and type exactly what you hear.'
+  }; return map[q.sourceTask]||'Complete the task using the information provided.';
+}
+function render(){
+  const q=state.questions[state.index]; if(!q)return;
+  const total=state.questions.length;
+  $('sectionEyebrow').textContent=(q.section||'PRACTICE').toUpperCase();
+  $('taskTitle').textContent=q.taskLabel||q.sourceTask||'Practice';
+  $('taskMeta').textContent=taskInstruction(q);
+  $('sectionPill').textContent=q.section||'Practice';
+  $('questionLabel').textContent=`QUESTION ${state.index+1} OF ${total}${state.flags[state.index]?' • FLAGGED':''}`;
+  $('jumpInput').max=total;$('jumpInput').value=state.index+1;
+  [...$('tabs').querySelectorAll('.tab')].forEach(b=>b.classList.toggle('active',b.dataset.section===(q.section||'Practice')));
+
+  const text=q.text||q.question||q.prompt||'';
+  let prompt='';
+  if(q.imageUrl) prompt+=`<img src="${esc(q.imageUrl)}" alt="Question image">`;
+  if(text) prompt+=`<div>${esc(text).replace(/\n/g,'<br>')}</div>`;
+  if(!text&&!q.imageUrl&&q.audioUrl) prompt+='<div>🎧 Listen to the audio and complete the task.</div>';
+  if(q.audioUrl) prompt+=`<div class="audioBox"><audio controls preload="metadata" src="${esc(q.audioUrl)}"></audio></div>`;
+  $('questionPrompt').innerHTML=prompt||'<div class="empty">Question content is unavailable.</div>';
+
+  $('hint').textContent=taskInstruction(q);
+  renderAnswer(q);
+  renderSolution(q);
+  $('prevBtn').disabled=state.index===0;
+  $('nextBtn').textContent=state.index===total-1?'Finish →':'Next →';
+  $('flagBtn').textContent=state.flags[state.index]?'⚑ Unflag':'⚑ Flag';
+  const answered=countAnswered();
+  $('answeredText').textContent=`${answered} answered • ${Object.keys(state.flags).length} flagged`;
+  $('progressLeft').textContent=`Question ${state.index+1} of ${total}`;
+  $('progressFill').style.width=((state.index+1)/total*100)+'%';
+  save();
+}
+function renderAnswer(q){
+  const key=String(state.index),a=state.answers[key];
+  const multi=q.sourceTask==='readingMCQMultiple'||q.sourceTask==='listeningMCQMultiple';
+  const reorder=q.sourceTask==='reorderParagraph';
+  const options=Array.isArray(q.options)?q.options.filter(Boolean):[];
+  if(reorder){
+    const list=Array.isArray(a)?a:(options.length?options.slice():String(q.answer||'').split(/\s*\|\s*/).filter(Boolean));
+    if(!Array.isArray(state.answers[key])) state.answers[key]=list.slice();
+    $('answerArea').innerHTML=`<div class="reorder">${list.map((x,i)=>`<div class="reorderItem"><span>${esc(x)}</span><button class="mini" data-up="${i}">↑</button><button class="mini" data-down="${i}">↓</button></div>`).join('')}</div>`;
+    $('answerArea').querySelectorAll('[data-up]').forEach(b=>b.onclick=()=>moveReorder(+b.dataset.up,-1));
+    $('answerArea').querySelectorAll('[data-down]').forEach(b=>b.onclick=()=>moveReorder(+b.dataset.down,1));
+    return;
+  }
+  if(options.length){
+    const selected=multi?(Array.isArray(a)?a:[]):[a];
+    $('answerArea').innerHTML=`<div class="options">${options.map((o,i)=>`<label class="option"><input type="${multi?'checkbox':'radio'}" name="answer" value="${i}" ${selected.includes(i)?'checked':''}><span>${esc(o)}</span></label>`).join('')}</div>`;
+    $('answerArea').querySelectorAll('input').forEach(inp=>inp.onchange=()=>{
+      if(multi) state.answers[key]=[...$('answerArea').querySelectorAll('input:checked')].map(x=>+x.value);
+      else state.answers[key]=+$('answerArea').querySelector('input:checked').value;
+      renderProgressOnly();save();
+    });
+  }else{
+    const long=['summarizeWrittenText','essay','summarizeSpoken','summarizeGroupDiscussion','respondSituation','retellLecture','describeImage','personalIntroduction'].includes(q.sourceTask);
+    $('answerArea').innerHTML=`<div class="answerBox">${long?`<textarea id="freeAnswer" placeholder="Type your response here...">${esc(a||'')}</textarea>`:`<input id="freeAnswer" placeholder="Type your answer here..." value="${esc(a||'')}">`}</div>`;
+    $('freeAnswer').oninput=e=>{state.answers[key]=e.target.value;renderProgressOnly();save();};
+  }
+}
+function moveReorder(i,d){
+  const key=String(state.index),a=Array.isArray(state.answers[key])?state.answers[key].slice():[];
+  if(!a.length)return;const j=i+d;if(j<0||j>=a.length)return;[a[i],a[j]]=[a[j],a[i]];state.answers[key]=a;render();
+}
+function renderSolution(q){
+  const parts=[];
+  if(q.transcript) parts.push(`<h3>Transcript</h3><pre>${esc(q.transcript)}</pre>`);
+  if(q.answer) parts.push(`<h3>Model answer / solution</h3><pre>${esc(q.answer)}</pre>`);
+  if(q.explanation) parts.push(`<h3>Explanation</h3><pre>${esc(q.explanation)}</pre>`);
+  if(q.templateImageUrl) parts.push(`<div class="resourceRow"><a class="resource" target="_blank" rel="noopener" href="${esc(q.templateImageUrl)}">🖼️ Open Template Image</a></div>`);
+  if(q.resourceUrl) parts.push(`<div class="resourceRow"><a class="resource" target="_blank" rel="noopener" href="${esc(q.resourceUrl)}">↗ Open Resource</a></div>`);
+  $('solution').innerHTML=parts.join('');
+  $('solution').classList.toggle('show',!!state.reviewMode&&!!parts.length);
+}
+function countAnswered(){return Object.values(state.answers).filter(v=>Array.isArray(v)?v.length:String(v??'').trim()!=='').length;}
+function renderProgressOnly(){
+  const answered=countAnswered();$('answeredText').textContent=`${answered} answered • ${Object.keys(state.flags).length} flagged`;
+}
+function startTimer(){
+  clearInterval(state.interval);
+  state.interval=setInterval(()=>{
+    if(state.paused||state.finished)return;
+    state.remaining=Math.max(0,state.remaining-1);updateTimer();
+    if(state.remaining===0) finishMock(true);
+  },1000);
+}
+function updateTimer(){
+  const h=Math.floor(state.remaining/3600),m=Math.floor(state.remaining%3600/60),s=state.remaining%60;
+  $('timer').textContent=[h,m,s].map((x,i)=>i===0?String(x).padStart(1,'0'):String(x).padStart(2,'0')).join(':');
+  $('timerState').textContent=state.paused?'Paused':state.finished?'Finished':'Running';
+}
+function startMock(){
+  state.started=true;state.startedAt=Date.now();state.finished=false;state.reviewMode=false;
+  $('startScreen').style.display='none';$('testArea').style.display='grid';updateTimer();startTimer();render();save();
+}
+function finishMock(force){
+  if(state.finished)return;
+  if(!force && !confirm('Finish the mock test and open the review?')) return;
+  state.finished=true;state.reviewMode=true;clearInterval(state.interval);
+  $('testArea').style.display='none';$('summary').classList.add('show');
+  buildSummary();save();
+}
+function expectedCorrect(q){
+  const a=state.answers[String(state.questions.indexOf(q))];
+  if(a===undefined||a===null||a===''||(Array.isArray(a)&&!a.length))return null;
+  if(!q.answer)return null;
+  const ans=String(q.answer);
+  const opts=q.options||[];
+  if(opts.length){
+    const expected=ans.split(/\s*\|\s*|\s*,\s*/).map(norm).filter(Boolean);
+    const chosen=(Array.isArray(a)?a:[a]).map(i=>norm(opts[i])).filter(Boolean);
+    return expected.length===chosen.length&&expected.every(x=>chosen.includes(x));
+  }
+  if(q.sourceTask==='reorderParagraph')return norm((Array.isArray(a)?a.join(' | '):a))===norm(ans);
+  return norm(a)===norm(ans);
+}
+function buildSummary(){
+  const total=state.questions.length,answered=countAnswered();
+  const objective=state.questions.map(expectedCorrect).filter(x=>x!==null);
+  const correct=objective.filter(Boolean).length;
+  $('sumQuestions').textContent=total;$('sumAnswered').textContent=answered;$('sumAccuracy').textContent=objective.length?Math.round(correct/objective.length*100)+'%':'Review';
+  const used=DURATION-state.remaining;const m=Math.floor(used/60),s=used%60;$('sumTime').textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  $('reviewList').innerHTML=state.questions.map((q,i)=>{
+    const user=state.answers[String(i)];
+    const userText=Array.isArray(user)?user.map(x=>(q.options||[])[x]).join(' | '):(user||'Not answered');
+    return `<article class="reviewItem"><div class="reviewHead"><span>Q${i+1} • ${esc(q.taskLabel||q.sourceTask)}</span><span>${state.flags[i]?'<span class="flagged">Flagged</span>':''}</span></div><div class="meta">${esc(q.text||q.question||q.prompt||'Audio/Image task').slice(0,420)}</div><div style="margin-top:8px"><b>Your response:</b> ${esc(userText)}</div>${q.answer?`<div style="margin-top:8px"><b>Solution:</b> ${esc(q.answer)}</div>`:''}${q.transcript?`<details style="margin-top:9px"><summary>Transcript</summary><div style="margin-top:7px">${esc(q.transcript)}</div></details>`:''}${q.templateImageUrl?`<div class="resourceRow"><a class="resource" target="_blank" href="${esc(q.templateImageUrl)}">🖼️ Template Image</a></div>`:''}</article>`;
+  }).join('');
+}
+function save(){
+  try{localStorage.setItem(KEY,JSON.stringify({...state,interval:null}));}catch(e){}
+}
+function restore(){
+  try{
+    const raw=localStorage.getItem(KEY);if(!raw)return false;
+    const saved=JSON.parse(raw);if(!saved?.questions?.length)return false;
+    Object.assign(state,saved,{interval:null});$('heroQuestions').textContent=state.questions.length;buildTabs();buildSectionList();
+    if(state.finished){$('startScreen').style.display='none';$('summary').classList.add('show');buildSummary();}
+    else if(state.started){$('startScreen').style.display='none';$('testArea').style.display='grid';updateTimer();startTimer();render();}
+    return true;
+  }catch(e){return false;}
+}
+$('startMock').onclick=startMock;
+$('prevBtn').onclick=()=>{if(state.index>0){state.index--;render();}};
+$('nextBtn').onclick=()=>{if(state.index<state.questions.length-1){state.index++;render();}else finishMock();};
+$('flagBtn').onclick=()=>{if(state.flags[state.index])delete state.flags[state.index];else state.flags[state.index]=true;render();};
+$('jumpGo').onclick=()=>{const n=Math.trunc(Number($('jumpInput').value));if(n>=1&&n<=state.questions.length){state.index=n-1;render();window.scrollTo({top:0,behavior:'smooth'});}else alert('Enter a question number from 1 to '+state.questions.length);};
+$('jumpInput').onkeydown=e=>{if(e.key==='Enter')$('jumpGo').click();};
+$('pauseBtn').onclick=()=>{state.paused=!state.paused;$('pauseBtn').textContent=state.paused?'Resume':'Pause';updateTimer();save();};
+$('endBtn').onclick=finishMock;$('finishBtn').onclick=finishMock;
+$('reviewAgain').onclick=()=>{state.finished=false;state.reviewMode=true;state.started=true;$('summary').classList.remove('show');$('testArea').style.display='grid';render();};
+$('newMock').onclick=async()=>{if(!confirm('Create a new random mock? Current attempt will be replaced.'))return;clearInterval(state.interval);localStorage.removeItem(KEY);state={questions:[],index:0,answers:{},flags:{},started:false,paused:false,finished:false,remaining:DURATION,seed:'',startedAt:0,interval:null,reviewMode:false};$('summary').classList.remove('show');$('startScreen').style.display='block';try{await loadMock(makeSeed());}catch(e){alert(e.message);}};
+(async()=>{try{if(!restore())await loadMock(makeSeed());}catch(e){$('startScreen').innerHTML=`<div class="empty"><h3>Unable to load Full Mock Test</h3><p>${esc(e.message)}</p><p>Check Code.gs, redeploy the Apps Script web app, and confirm the finished question sheets contain data.</p></div>`;}})();
+</script>
+</body>
+</html>
